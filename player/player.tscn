@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://wlyic1y7fqrj"]
+
+[ext_resource type="Script" uid="uid://dymguk4frsunu" path="res://player/player.gd" id="1_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://dqqe2miwvrtrp" path="res://assets/tank/tankBody_bigRed_outline.png" id="1_rkbax"]
+[ext_resource type="Texture2D" uid="uid://b65ojxmy0btf5" path="res://assets/tank/specialBarrel3_outline.png" id="2_g1dw6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
+size = Vector2(52, 49)
+
+[node name="Player" type="Area2D" unique_id=283867489]
+script = ExtResource("1_g1dw6")
+
+[node name="Base" type="Sprite2D" parent="." unique_id=198659059]
+texture = ExtResource("1_rkbax")
+
+[node name="Gun" type="Sprite2D" parent="." unique_id=887460386]
+texture = ExtResource("2_g1dw6")
+offset = Vector2(8, 0)
+
+[node name="BulletSpawnMarker" type="Marker2D" parent="Gun" unique_id=1209348512]
+position = Vector2(32, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1160708865]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_g1dw6")

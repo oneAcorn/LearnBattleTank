@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://huuop2c7gfpl"]
+
+[ext_resource type="Texture2D" uid="uid://dmsw4bdhqh2xh" path="res://assets/enemy/bulletSand2.png" id="1_43med"]
+[ext_resource type="Script" uid="uid://c7rv0to7deulo" path="res://enemy_bullet/defense_tower_bullet.gd" id="1_m6cq1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m6cq1"]
+radius = 4.0
+height = 14.0
+
+[sub_resource type="Animation" id="Animation_43med"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_m6cq1"]
+resource_name = "bullet"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.20009334, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.8914463, 0.5135884, 0.16058612, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_awo4x"]
+_data = {
+&"RESET": SubResource("Animation_43med"),
+&"bullet": SubResource("Animation_m6cq1")
+}
+
+[node name="DefenseTowerBullet" type="Area2D" unique_id=273727665]
+script = ExtResource("1_m6cq1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2000832207]
+rotation = 1.5707964
+texture = ExtResource("1_43med")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=499265134]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_m6cq1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=611626843]
+rect = Rect2(-6, -4, 12, 8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1794653214]
+libraries/ = SubResource("AnimationLibrary_awo4x")
+autoplay = &"bullet"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
