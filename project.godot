@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="LearnBattleTank"
+run/main_scene="uid://by7bt5vm8acvv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*uid://bkiiq5eloi2x8"
 
 [display]
 
@@ -22,7 +27,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdscript_formatter/plugin.cfg", "res://addons/gdscript_refactoring/plugin.cfg")
 
 [input]
 
@@ -56,6 +61,17 @@ shoot={
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="PlayerHitBox"
+2d_physics/layer_2="PlayerHurtBox"
+2d_physics/layer_3="EnemyHitBox"
+2d_physics/layer_4="EnemyHurtBox"
+2d_physics/layer_5="Barrier"
+2d_physics/layer_6="PlayerBody"
+2d_physics/layer_7="EnemyBody"
+2d_physics/layer_8="PickUp"
 
 [physics]
 

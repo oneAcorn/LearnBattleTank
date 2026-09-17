@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://by7bt5vm8acvv"]
+
+[ext_resource type="PackedScene" uid="uid://1rr3otve8i32" path="res://map/map.tscn" id="1_h7iqs"]
+[ext_resource type="PackedScene" uid="uid://wlyic1y7fqrj" path="res://player/player.tscn" id="2_4fuuu"]
+[ext_resource type="PackedScene" uid="uid://bckn4cs6lrapw" path="res://UI/hud.tscn" id="3_4fuuu"]
+[ext_resource type="PackedScene" uid="uid://c6f31skwj6ec" path="res://enemy/defense_tower.tscn" id="3_dxrkv"]
+[ext_resource type="PackedScene" uid="uid://ca8o6o7drvljx" path="res://manager/vfx_manager.tscn" id="5_dakft"]
+[ext_resource type="PackedScene" uid="uid://bxoddk5xsrnen" path="res://VFX/explosion_anim.tscn" id="6_u5opy"]
+
+[node name="Game" type="Node2D" unique_id=1967543132]
+
+[node name="Map" parent="." unique_id=453668503 instance=ExtResource("1_h7iqs")]
+
+[node name="Player" parent="." unique_id=283867489 instance=ExtResource("2_4fuuu")]
+position = Vector2(1052, 354)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=2084516245]
+
+[node name="HUD" parent="UI" unique_id=1056202728 instance=ExtResource("3_4fuuu")]
+
+[node name="Enemies" type="Node2D" parent="." unique_id=1959983416]
+
+[node name="DefenseTower" parent="Enemies" unique_id=1909969543 instance=ExtResource("3_dxrkv")]
+position = Vector2(438, 171)
+
+[node name="DefenseTower2" parent="Enemies" unique_id=358840622 instance=ExtResource("3_dxrkv")]
+position = Vector2(337, 454)
+
+[node name="DefenseTower3" parent="Enemies" unique_id=2075643124 instance=ExtResource("3_dxrkv")]
+position = Vector2(523, 659)
+
+[node name="VFXManager" parent="." unique_id=612723603 instance=ExtResource("5_dakft")]
+exp_anim_scene = ExtResource("6_u5opy")

@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://cm7mfxg78qtu1"]
+
+[ext_resource type="Script" uid="uid://bl37u1jyyskw4" path="res://components/weapon_component.gd" id="1_c862l"]
+[ext_resource type="Texture2D" uid="uid://b65ojxmy0btf5" path="res://assets/tank/specialBarrel3_outline.png" id="1_ufn0f"]
+[ext_resource type="Texture2D" uid="uid://qh4rx4otm1t1" path="res://assets/VFX/shotOrange.png" id="2_xd41d"]
+[ext_resource type="AudioStream" uid="uid://c6a6e2brsrh7n" path="res://assets/sound/shoot.wav" id="3_xd41d"]
+
+[sub_resource type="Animation" id="Animation_ufn0f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun/Fire:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gun/Fire:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xd41d"]
+resource_name = "shoot"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-10, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun/Fire:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gun/Fire:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.30402198),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShootSound")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_xd41d")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c862l"]
+_data = {
+&"RESET": SubResource("Animation_ufn0f"),
+&"shoot": SubResource("Animation_xd41d")
+}
+
+[node name="WeaponComponent" type="Node2D" unique_id=620816288]
+script = ExtResource("1_c862l")
+
+[node name="Gun" type="Sprite2D" parent="." unique_id=294733802]
+texture = ExtResource("1_ufn0f")
+offset = Vector2(10, 0)
+
+[node name="MuzzleMarker" type="Marker2D" parent="Gun" unique_id=1432686405]
+position = Vector2(32, 0)
+
+[node name="Fire" type="Sprite2D" parent="Gun" unique_id=452773721]
+position = Vector2(40, 0)
+rotation = -1.5707964
+texture = ExtResource("2_xd41d")
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1034017300]
+volume_db = -10.0
+max_distance = 1200.0
+
+[node name="Timer" type="Timer" parent="." unique_id=1774773653]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1540357724]
+libraries/ = SubResource("AnimationLibrary_c862l")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

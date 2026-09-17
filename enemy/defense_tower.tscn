@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_q2paq"]
 radius = 30.0
 
-[node name="DefenseTower" type="Area2D" unique_id=1909969543]
+[node name="DefenseTower" type="Area2D" unique_id=1909969543 groups=["Enemy"]]
 script = ExtResource("1_sep5u")
 bullet_scene = ExtResource("2_q2paq")
 

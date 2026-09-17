@@ -1,8 +1,9 @@
 extends Area2D
 
-@export var player: Node2D
 @export var bullet_scene: PackedScene
+@export var health: int = 3
 
+@onready var player: Node2D = get_tree().get_first_node_in_group("Player")
 @onready var gun: Sprite2D = $Gun
 @onready var timer: Timer = $Timer
 @onready var bullet_spawn_marker: Marker2D = $Gun/Marker2D
@@ -10,6 +11,7 @@ extends Area2D
 
 func _ready() -> void:
 	timer.start(1)
+	GameManager.player_killed.connect(on_player_killed)
 
 
 func _process(delta: float) -> void:
@@ -32,3 +34,15 @@ func shoot():
 	bullet.rotation = gun.rotation
 	bullet.top_level = true  # 脱离父节点影响,防止子弹随炮管旋转而偏移
 	add_child(bullet)
+
+
+func reduce_health():
+	if health > 0:
+		health -= 1
+	if health <= 0:
+		GameManager.enemy_killed.emit(global_position)
+		queue_free()
+
+
+func on_player_killed():
+	timer.stop()

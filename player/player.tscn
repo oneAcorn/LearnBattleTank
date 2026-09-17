@@ -1,25 +1,129 @@
 [gd_scene format=3 uid="uid://wlyic1y7fqrj"]
 
 [ext_resource type="Script" uid="uid://dymguk4frsunu" path="res://player/player.gd" id="1_g1dw6"]
+[ext_resource type="Material" uid="uid://y7crwjkkape3" path="res://assets/material/flash.tres" id="1_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://dqqe2miwvrtrp" path="res://assets/tank/tankBody_bigRed_outline.png" id="1_rkbax"]
-[ext_resource type="Texture2D" uid="uid://b65ojxmy0btf5" path="res://assets/tank/specialBarrel3_outline.png" id="2_g1dw6"]
+[ext_resource type="AudioStream" uid="uid://c36jovuh17lfr" path="res://assets/sound/engine.ogg" id="5_g6k8r"]
+[ext_resource type="PackedScene" uid="uid://b0ktboaygj8y7" path="res://components/health_component.tscn" id="5_rgyib"]
+[ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="6_hg6s5"]
+[ext_resource type="PackedScene" uid="uid://cm7mfxg78qtu1" path="res://components/weapon_component.tscn" id="7_8t03j"]
+[ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="8_2ieo8"]
+[ext_resource type="PackedScene" uid="uid://b707s53lvprvd" path="res://player_bullet/player_bullet.tscn" id="8_8t03j"]
+[ext_resource type="Texture2D" uid="uid://b6ij70gcxeyq0" path="res://assets/VFX/white_glowing_circle.png" id="9_hg6s5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
 size = Vector2(52, 49)
 
-[node name="Player" type="Area2D" unique_id=283867489]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebec5"]
+radius = 25.0
+
+[sub_resource type="Curve" id="Curve_8t03j"]
+_data = [Vector2(0, 0.28779483), 0.0, 0.0, 0, 0, Vector2(1, 0.5131762), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_2ieo8"]
+colors = PackedColorArray(0, 0, 0, 0.5294118, 0.27058825, 0.27058825, 0.27058825, 0.27058825)
+
+[sub_resource type="Animation" id="Animation_8t03j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_2ieo8"]
+resource_name = "flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ebec5"]
+_data = {
+&"RESET": SubResource("Animation_8t03j"),
+&"flash": SubResource("Animation_2ieo8")
+}
+
+[node name="Player" type="CharacterBody2D" unique_id=2052937105 groups=["Player"]]
+material = ExtResource("1_hg6s5")
+collision_layer = 32
+collision_mask = 208
 script = ExtResource("1_g1dw6")
 
 [node name="Base" type="Sprite2D" parent="." unique_id=198659059]
 texture = ExtResource("1_rkbax")
 
-[node name="Gun" type="Sprite2D" parent="." unique_id=887460386]
-texture = ExtResource("2_g1dw6")
-offset = Vector2(8, 0)
-
-[node name="BulletSpawnMarker" type="Marker2D" parent="Gun" unique_id=1209348512]
-position = Vector2(32, 0)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1160708865]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_g1dw6")
+
+[node name="EngineSound" type="AudioStreamPlayer" parent="." unique_id=437280559]
+stream = ExtResource("5_g6k8r")
+volume_db = -9.964
+autoplay = true
+
+[node name="HealthComponent" parent="." unique_id=1247844966 instance=ExtResource("5_rgyib")]
+
+[node name="HurtBoxComponent" parent="." unique_id=585889580 instance=ExtResource("6_hg6s5")]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=24517227]
+shape = SubResource("CircleShape2D_ebec5")
+
+[node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("7_8t03j")]
+bullet_scene = ExtResource("8_8t03j")
+
+[node name="TrailComponent" parent="." unique_id=648980880 instance=ExtResource("8_2ieo8")]
+
+[node name="Smoke" type="CPUParticles2D" parent="." unique_id=100266862]
+position = Vector2(-23, -9)
+amount = 20
+texture = ExtResource("9_hg6s5")
+lifetime = 2.0
+randomness = 0.5
+direction = Vector2(-1, 0)
+spread = 5.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 50.0
+damping_min = 20.0
+damping_max = 40.0
+scale_amount_curve = SubResource("Curve_8t03j")
+color_ramp = SubResource("Gradient_2ieo8")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2129468654]
+limit_left = -128
+limit_top = -128
+limit_right = 2880
+limit_bottom = 1470
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1642970758]
+libraries/ = SubResource("AnimationLibrary_ebec5")
+
+[node name="Timer" type="Timer" parent="." unique_id=1616079720]
+
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
+[connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]
+[connection signal="get_damage" from="HurtBoxComponent" to="HealthComponent" method="get_damage"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,39 +1,36 @@
-extends Area2D
+extends CharacterBody2D
 
 @export var max_speed: float = 300
-@export var bullet_scene: PackedScene
-@onready var bullet_marker: Marker2D = $Gun/BulletSpawnMarker
-@onready var gun: Sprite2D = $Gun
-@onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var engine_sound: AudioStreamPlayer = $EngineSound
+@onready var weapon_component: Node2D = $WeaponComponent
+@onready var trail_component: Node2D = $TrailComponent
+@onready var health_component: Node = $HealthComponent
+@onready var hurt_box_component: Area2D = $HurtBoxComponent
+@onready var camera: Camera2D = $Camera2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var timer: Timer = $Timer
 
 var direction := Vector2.ZERO
-var target_pos: Vector2
 var speed: float = 0
-
-# 用于边界检测
-var half_size := Vector2.ZERO
+var can_shake := false
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if collision:
-		var shape = collision.shape
-		if shape is CircleShape2D:
-			half_size = Vector2(shape.radius, shape.radius)
-		elif shape is RectangleShape2D:
-			half_size = shape.extents
-		elif shape is CapsuleShape2D:
-			# 胶囊近似矩形,按矩形处理
-			half_size = Vector2(shape.radius, shape.height * 0.5)
-		else:
-			half_size = shape.get_rect().size * 0.5
+	GameManager.player_win.connect(_on_player_win)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	move(delta)
-	target()
-	shoot()
+	if can_shake:
+		shake()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	var target_pos = get_global_mouse_position()  #获取鼠标的世界坐标
+	weapon_component.target(target_pos)
+	if event.is_action_pressed("shoot"):
+		weapon_component.shoot(target_pos)
 
 
 func move(delta: float):
@@ -42,28 +39,43 @@ func move(delta: float):
 		var angle_rad = direction.angle()
 		rotation = rotate_toward(rotation, angle_rad, 2 * PI * delta)
 		speed = move_toward(speed, max_speed, max_speed * delta)
+		trail_component.start()
 	else:
 		speed = move_toward(speed, 0, 2 * max_speed * delta)
-	position += transform.x * speed * delta
-	check_border()
+		trail_component.stop()
+	velocity = transform.x * speed
+	move_and_slide()
 
 
-func check_border():
-	var size = get_viewport_rect().size
-	var min_pos = half_size
-	var max_pos = size - half_size
-	position = position.clamp(min_pos, max_pos)
+func on_player_killed():
+	set_process(false)
 
 
-func target():
-	target_pos = get_global_mouse_position()
-	gun.look_at(target_pos)
+func _on_health_component_health_changed(health_percent: float) -> void:
+	GameManager.update_health_ui.emit(health_percent)
 
 
-func shoot():
-	if Input.is_action_just_pressed("shoot"):
-		var bullet: Node2D = bullet_scene.instantiate()
-		bullet.global_position = bullet_marker.global_position
-		bullet.look_at(target_pos)
-		bullet.top_level = true
-		add_child(bullet)
+func _on_health_component_died() -> void:
+	GameManager.entity_died.emit(global_position, get_groups())
+	GameManager.player_killed.emit()
+	set_physics_process(false)
+	hide()
+	hurt_box_component.set_deferred("monitorable", false)
+
+
+func _on_player_win():
+	set_physics_process(false)
+
+
+func shake():
+	camera.offset = Vector2(randf_range(-3, 3), randf_range(-3, 3))
+
+
+func _on_hurt_box_component_get_damage(damage: float) -> void:
+	animation_player.play("flash")
+	can_shake = true
+	timer.start()
+
+
+func _on_timer_timeout() -> void:
+	can_shake = false

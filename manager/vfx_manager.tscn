@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ca8o6o7drvljx"]
+
+[ext_resource type="AudioStream" uid="uid://d28csk7ekifvs" path="res://assets/sound/Explosion.WAV" id="1_5m7sr"]
+[ext_resource type="Script" uid="uid://byqos0vhghg1k" path="res://manager/vfx_manager.gd" id="1_pb5xb"]
+
+[node name="VFXManager" type="Node2D" unique_id=612723603]
+script = ExtResource("1_pb5xb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=800747395]
+stream = ExtResource("1_5m7sr")

@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://bckn4cs6lrapw"]
+
+[ext_resource type="Script" uid="uid://m76f1vbepq3o" path="res://UI/hud.gd" id="1_ne75i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bytes"]
+font_size = 20
+
+[node name="HUD" type="Control" unique_id=1056202728]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ne75i")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=108017598]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1897508855]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1429363875]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="KillCountLabel" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer" unique_id=1534427040]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Killed:0"
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1435079726]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/PanelContainer2" unique_id=75999534]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=914582836]
+layout_mode = 2
+text = "Health:"
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=1059721717]
+custom_minimum_size = Vector2(400, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 1.0
+value = 100.0
+
+[node name="NotifyPanel" type="PanelContainer" parent="MarginContainer" unique_id=1654361780]
+visible = false
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NotifyLabel" type="Label" parent="MarginContainer/NotifyPanel" unique_id=33183738]
+layout_mode = 2
+text = "You Win"
+label_settings = SubResource("LabelSettings_bytes")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=181769170]
+one_shot = true
