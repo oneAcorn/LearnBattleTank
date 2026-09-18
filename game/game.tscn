@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://by7bt5vm8acvv"]
 
-[ext_resource type="PackedScene" uid="uid://1rr3otve8i32" path="res://map/map.tscn" id="1_h7iqs"]
+[ext_resource type="PackedScene" uid="uid://1rr3otve8i32" path="res://map/map_old_version.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://wlyic1y7fqrj" path="res://player/player.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://bckn4cs6lrapw" path="res://UI/hud.tscn" id="3_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://knjf0qhl3qla" path="res://enemy/enemy_tower.tscn" id="4_dakft"]
