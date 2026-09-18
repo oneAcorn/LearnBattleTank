@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="6_hg6s5"]
 [ext_resource type="PackedScene" uid="uid://cm7mfxg78qtu1" path="res://components/weapon_component.tscn" id="7_8t03j"]
 [ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="8_2ieo8"]
-[ext_resource type="PackedScene" uid="uid://b707s53lvprvd" path="res://player_bullet/player_bullet.tscn" id="8_8t03j"]
+[ext_resource type="PackedScene" uid="uid://c8jxcmtrrni0m" path="res://object/player_bullet.tscn" id="8_8t03j"]
 [ext_resource type="Texture2D" uid="uid://b6ij70gcxeyq0" path="res://assets/VFX/white_glowing_circle.png" id="9_hg6s5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]

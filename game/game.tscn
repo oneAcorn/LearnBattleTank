@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://1rr3otve8i32" path="res://map/map.tscn" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://wlyic1y7fqrj" path="res://player/player.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://bckn4cs6lrapw" path="res://UI/hud.tscn" id="3_4fuuu"]
-[ext_resource type="PackedScene" uid="uid://c6f31skwj6ec" path="res://enemy/defense_tower.tscn" id="3_dxrkv"]
+[ext_resource type="PackedScene" uid="uid://knjf0qhl3qla" path="res://enemy/enemy_tower.tscn" id="4_dakft"]
 [ext_resource type="PackedScene" uid="uid://ca8o6o7drvljx" path="res://manager/vfx_manager.tscn" id="5_dakft"]
 [ext_resource type="PackedScene" uid="uid://bxoddk5xsrnen" path="res://VFX/explosion_anim.tscn" id="6_u5opy"]
 
@@ -20,14 +20,14 @@ position = Vector2(1052, 354)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1959983416]
 
-[node name="DefenseTower" parent="Enemies" unique_id=1909969543 instance=ExtResource("3_dxrkv")]
-position = Vector2(438, 171)
+[node name="EnemyTower" parent="Enemies" unique_id=1438735698 instance=ExtResource("4_dakft")]
+position = Vector2(301, 131)
 
-[node name="DefenseTower2" parent="Enemies" unique_id=358840622 instance=ExtResource("3_dxrkv")]
-position = Vector2(337, 454)
+[node name="EnemyTower2" parent="Enemies" unique_id=815601666 instance=ExtResource("4_dakft")]
+position = Vector2(253, 613)
 
-[node name="DefenseTower3" parent="Enemies" unique_id=2075643124 instance=ExtResource("3_dxrkv")]
-position = Vector2(523, 659)
+[node name="EnemyTower3" parent="Enemies" unique_id=1771407937 instance=ExtResource("4_dakft")]
+position = Vector2(280, 305)
 
 [node name="VFXManager" parent="." unique_id=612723603 instance=ExtResource("5_dakft")]
 exp_anim_scene = ExtResource("6_u5opy")

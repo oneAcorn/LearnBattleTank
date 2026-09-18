@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bp07hx6cxhhg"]
+
+[ext_resource type="Script" uid="uid://bb7j76f4yyhg2" path="res://object/bullet_trail.gd" id="1_bwegr"]
+
+[sub_resource type="Curve" id="Curve_bwegr"]
+_data = [Vector2(0.055555552, 0.16710699), 0.0, 0.0, 0, 0, Vector2(0.49346402, 0.6994716), 0.0, 0.0, 0, 0, Vector2(0.990196, 0.4075297), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_ak2o4"]
+offsets = PackedFloat32Array(0, 0.92537314)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[node name="BulletTrail" type="Node2D" unique_id=1821403940]
+
+[node name="Trail" type="Line2D" parent="." unique_id=1262773644]
+points = PackedVector2Array(-40, 0, -11, 0, 0, 0)
+width_curve = SubResource("Curve_bwegr")
+default_color = Color(1, 1, 1, 0.8352941)
+gradient = SubResource("Gradient_ak2o4")
+script = ExtResource("1_bwegr")

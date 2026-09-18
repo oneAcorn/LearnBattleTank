@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c8jxcmtrrni0m"]
+
+[ext_resource type="PackedScene" uid="uid://cyl3ar2bhnb3g" path="res://object/bullet_base.tscn" id="1_rjjwc"]
+
+[node name="PlayerBullet" unique_id=1875978978 instance=ExtResource("1_rjjwc")]
+
+[node name="HitBoxComponent" parent="." index="2" unique_id=1123063680]
+collision_mask = 24
