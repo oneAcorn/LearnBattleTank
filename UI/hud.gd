@@ -9,10 +9,11 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	GameManager.enemy_killed.connect(on_enemy_killed)
+	GameManager.update_score_ui.connect(on_update_score_Ui)
 	GameManager.update_health_ui.connect(on_update_health_ui)
 	GameManager.player_killed.connect(on_player_killed)
 	GameManager.player_win.connect(on_player_win)
+	on_update_score_Ui(GameManager.score, GameManager.enemy_size)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,12 +21,8 @@ func _process(delta: float) -> void:
 	pass
 
 
-func on_enemy_killed(pos: Vector2):
-	killed_label.text = "Killed: %s" % str(GameManager.score)
-
-
-func on_update_health_ui(health: int):
-	var value = 100 * health / 10
+func on_update_health_ui(health: float):
+	var value = 100 * health
 	health_bar.value = value
 
 
@@ -41,3 +38,11 @@ func on_player_win():
 	await timer.timeout
 	notify_label.text = "You Win"
 	notify_panel.show()
+
+
+func on_update_score_Ui(score: int, total: int):
+	killed_label.text = "Killed: %s/%s" % [str(score), str(total)]
+
+
+func _on_continue_button_pressed() -> void:
+	pass  # Replace with function body.

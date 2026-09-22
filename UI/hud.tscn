@@ -1,9 +1,39 @@
 [gd_scene format=3 uid="uid://bckn4cs6lrapw"]
 
 [ext_resource type="Script" uid="uid://m76f1vbepq3o" path="res://UI/hud.gd" id="1_ne75i"]
+[ext_resource type="StyleBox" uid="uid://688tfm2rx2ar" path="res://assets/UI/panel.tres" id="2_2o5uh"]
+[ext_resource type="LabelSettings" uid="uid://c2oda3malkabe" path="res://assets/UI/font35.tres" id="3_b1lf8"]
+[ext_resource type="FontFile" uid="uid://byqe3samxmp2t" path="res://assets/font/Rockboxcond12.ttf" id="4_b1lf8"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_bytes"]
-font_size = 20
+[sub_resource type="Theme" id="Theme_2o5uh"]
+PanelContainer/styles/panel = ExtResource("2_2o5uh")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rnl6m"]
+bg_color = Color(0.31637993, 0.39761618, 0.54850584, 1)
+border_width_left = 3
+border_width_top = 8
+border_width_right = 6
+border_width_bottom = 3
+border_color = Color(0.07927818, 0.19548655, 0.32194668, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ui3w"]
+bg_color = Color(0.8096625, 0.17339623, 0.2930687, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 12
+border_color = Color(0.27717707, 0.026129749, 0.07654371, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+corner_detail = 10
 
 [node name="HUD" type="Control" unique_id=1056202728]
 layout_mode = 3
@@ -12,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_2o5uh")
 script = ExtResource("1_ne75i")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=108017598]
@@ -34,11 +65,13 @@ size_flags_vertical = 0
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 2
+theme_override_styles/panel = ExtResource("2_2o5uh")
 
 [node name="KillCountLabel" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer" unique_id=1534427040]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Killed:0"
+label_settings = ExtResource("3_b1lf8")
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/HBoxContainer" unique_id=1435079726]
 custom_minimum_size = Vector2(500, 50)
@@ -51,27 +84,41 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=914582836]
 layout_mode = 2
 text = "Health:"
+label_settings = ExtResource("3_b1lf8")
 
 [node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PanelContainer2/HBoxContainer" unique_id=1059721717]
 custom_minimum_size = Vector2(400, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_rnl6m")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1ui3w")
 step = 1.0
-value = 100.0
+value = 33.0
 
 [node name="NotifyPanel" type="PanelContainer" parent="MarginContainer" unique_id=1654361780]
-visible = false
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="NotifyLabel" type="Label" parent="MarginContainer/NotifyPanel" unique_id=33183738]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NotifyPanel" unique_id=1234690766]
+layout_mode = 2
+
+[node name="NotifyLabel" type="Label" parent="MarginContainer/NotifyPanel/VBoxContainer" unique_id=33183738]
 layout_mode = 2
 text = "You Win"
-label_settings = SubResource("LabelSettings_bytes")
+label_settings = ExtResource("3_b1lf8")
 horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="MarginContainer/NotifyPanel/VBoxContainer" unique_id=1052870396]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("4_b1lf8")
+theme_override_font_sizes/font_size = 30
+text = "Continue"
 
 [node name="Timer" type="Timer" parent="." unique_id=181769170]
 one_shot = true
+
+[connection signal="pressed" from="MarginContainer/NotifyPanel/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
