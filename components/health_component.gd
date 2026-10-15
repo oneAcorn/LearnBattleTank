@@ -7,6 +7,10 @@ signal health_changed(health_percent: float)
 @onready var current_health: float = max_health
 
 
+func _ready() -> void:
+	health_changed.emit(get_health_percent())
+
+
 func get_health_percent():
 	if current_health <= 0:
 		return 0

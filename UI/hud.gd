@@ -16,11 +16,6 @@ func _ready() -> void:
 	on_update_score_Ui(GameManager.score, GameManager.enemy_size)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func on_update_health_ui(health: float):
 	var value = 100 * health
 	health_bar.value = value

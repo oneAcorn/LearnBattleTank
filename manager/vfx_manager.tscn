@@ -2,9 +2,28 @@
 
 [ext_resource type="AudioStream" uid="uid://d28csk7ekifvs" path="res://assets/sound/Explosion.WAV" id="1_5m7sr"]
 [ext_resource type="Script" uid="uid://byqos0vhghg1k" path="res://manager/vfx_manager.gd" id="1_pb5xb"]
+[ext_resource type="AudioStream" uid="uid://bfu2wybfxg4go" path="res://assets/sound/impactMining_000.ogg" id="3_53bwy"]
+[ext_resource type="AudioStream" uid="uid://b2jgy31lsxnyj" path="res://assets/sound/impactMining_001.ogg" id="4_3no0g"]
+[ext_resource type="AudioStream" uid="uid://clsvft534a5sn" path="res://assets/sound/impactMining_002.ogg" id="5_ahnw0"]
+[ext_resource type="AudioStream" uid="uid://fnyumhlleqly" path="res://assets/sound/impactMining_003.ogg" id="6_odn1a"]
+[ext_resource type="AudioStream" uid="uid://cts3pybv3q50c" path="res://assets/sound/impactMining_004.ogg" id="7_jsy2h"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_6p4oq"]
+streams_count = 5
+stream_0/stream = ExtResource("3_53bwy")
+stream_1/stream = ExtResource("4_3no0g")
+stream_2/stream = ExtResource("5_ahnw0")
+stream_3/stream = ExtResource("6_odn1a")
+stream_4/stream = ExtResource("7_jsy2h")
 
 [node name="VFXManager" type="Node2D" unique_id=612723603]
 script = ExtResource("1_pb5xb")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=800747395]
+stream = ExtResource("1_5m7sr")
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=1096166004]
+stream = SubResource("AudioStreamRandomizer_6p4oq")
+
+[node name="ExpSound" type="AudioStreamPlayer2D" parent="." unique_id=1926655595]
 stream = ExtResource("1_5m7sr")

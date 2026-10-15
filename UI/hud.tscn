@@ -97,6 +97,7 @@ step = 1.0
 value = 33.0
 
 [node name="NotifyPanel" type="PanelContainer" parent="MarginContainer" unique_id=1654361780]
+visible = false
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 size_flags_horizontal = 4
