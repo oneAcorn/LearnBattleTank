@@ -12,7 +12,10 @@ extends CharacterBody2D
 
 var direction := Vector2.ZERO
 var speed: float = 0
-var can_shake := false
+
+var shake_amount := 0.0  # 当前抖动幅度，单位像素
+const SHAKE_DECAY := 20.0  # 每秒衰减多少
+const SHAKE_MAX := 5.0  # 受击时初始抖动幅度
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,16 +23,24 @@ func _ready() -> void:
 	GameManager.player_win.connect(_on_player_win)
 
 
+func _process(delta: float) -> void:
+	if shake_amount > 0:
+		shake_amount = move_toward(shake_amount, 0, SHAKE_DECAY * delta)
+		camera.offset = Vector2(randf_range(-shake_amount, shake_amount), randf_range(-shake_amount, shake_amount))
+	else:
+		camera.offset = Vector2.ZERO
+
+
 func _physics_process(delta: float) -> void:
 	move(delta)
-	if can_shake:
-		shake()
 
 
 func _unhandled_input(event: InputEvent) -> void:
 	var target_pos = get_global_mouse_position()  #获取鼠标的世界坐标
 	weapon_component.target(target_pos)
+	#print("player unhandled input:%s" % [target_pos])
 	if event.is_action_pressed("shoot"):
+		#print("player pressed shoot")
 		weapon_component.shoot(target_pos)
 
 
@@ -67,15 +78,6 @@ func _on_player_win():
 	set_physics_process(false)
 
 
-func shake():
-	camera.offset = Vector2(randf_range(-3, 3), randf_range(-3, 3))
-
-
-func _on_hurt_box_component_get_damage(damage: float) -> void:
+func _on_hurt_box_component_get_damage(_damage: float) -> void:
 	animation_player.play("flash")
-	can_shake = true
-	timer.start()
-
-
-func _on_timer_timeout() -> void:
-	can_shake = false
+	shake_amount = SHAKE_MAX

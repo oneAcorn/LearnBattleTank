@@ -126,4 +126,3 @@ libraries/ = SubResource("AnimationLibrary_ebec5")
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_component_health_changed"]
 [connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]
 [connection signal="get_damage" from="HurtBoxComponent" to="HealthComponent" method="get_damage"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -8,6 +8,7 @@ signal health_changed(health_percent: float)
 
 
 func _ready() -> void:
+	await get_tree().process_frame
 	health_changed.emit(get_health_percent())
 
 
