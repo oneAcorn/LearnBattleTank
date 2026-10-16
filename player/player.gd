@@ -3,7 +3,6 @@ extends CharacterBody2D
 @export var max_speed: float = 300
 @onready var engine_sound: AudioStreamPlayer = $EngineSound
 @onready var weapon_component: Node2D = $WeaponComponent
-@onready var trail_component: Node2D = $TrailComponent
 @onready var health_component: Node = $HealthComponent
 @onready var hurt_box_component: Area2D = $HurtBoxComponent
 @onready var camera: Camera2D = $Camera2D
@@ -50,10 +49,8 @@ func move(delta: float):
 		var angle_rad = direction.angle()
 		rotation = rotate_toward(rotation, angle_rad, 2 * PI * delta)
 		speed = move_toward(speed, max_speed, max_speed * delta)
-		trail_component.start()
 	else:
 		speed = move_toward(speed, 0, 2 * max_speed * delta)
-		trail_component.stop()
 	velocity = transform.x * speed
 	move_and_slide()
 

@@ -1,26 +1,27 @@
 extends Node2D
 
 @export var trail_scene: PackedScene
-@onready var timer: Timer = $Timer
+@export var trail_spacing: float = 22.0
+
+@onready var target: Node2D = owner as Node2D
+var _last_pos: Vector2
 
 
-func _on_timer_timeout() -> void:
-	pass  # Replace with function body.
+func _ready() -> void:
+	_last_pos = target.global_position
 
 
-func start():
-	if timer.is_stopped():
-		timer.start()
+func _process(_delta: float) -> void:
+	var pos: Vector2 = target.global_position
+	if pos.distance_to(_last_pos) < trail_spacing:
+		return
+	generate_trail(pos)
+	_last_pos = pos
 
 
-func stop():
-	if not timer.is_stopped():
-		timer.stop()
-
-
-func generate_trail():
+func generate_trail(pos: Vector2):
 	var trail: Node2D = trail_scene.instantiate()
-	trail.global_position = owner.global_position
-	trail.rotation = owner.rotation
+	trail.global_position = pos
+	trail.rotation = target.rotation
 	trail.top_level = true
-	add_child(trail)
+	get_tree().current_scene.add_child(trail)

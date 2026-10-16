@@ -6,7 +6,3 @@
 [node name="TrailComponent" type="Node2D" unique_id=648980880]
 script = ExtResource("1_l7d3p")
 trail_scene = ExtResource("2_mwodj")
-
-[node name="Timer" type="Timer" parent="." unique_id=1787614778]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

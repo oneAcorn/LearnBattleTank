@@ -2,7 +2,6 @@ extends PathFollow2D
 
 @export var speed: float = 100
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var trail_component = $TrailComponent
 @onready var detect_component = $DetectComponent
 @onready var weapon_component = $WeaponComponent
 
@@ -18,7 +17,6 @@ func _on_health_component_died() -> void:
 
 func _process(delta: float) -> void:
 	progress += speed * delta
-	trail_component.start()
 	find_player()
 
 
