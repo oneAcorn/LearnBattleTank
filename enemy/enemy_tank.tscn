@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c71g51lnk76o0" path="res://components/detect_component.tscn" id="6_v5g7f"]
 [ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="7_jj0bg"]
 [ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="8_s6oj5"]
+[ext_resource type="PackedScene" uid="uid://dyvdnjkqpmoay" path="res://components/body_component.tscn" id="11_hd834"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jj0bg"]
 radius = 342.95
@@ -54,6 +55,9 @@ _data = {
 &"flash": SubResource("Animation_s6oj5")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ynqg"]
+size = Vector2(41, 42)
+
 [node name="EnemyTank" type="PathFollow2D" unique_id=1686006969 groups=["Enemy", "EnemyTank"]]
 material = ExtResource("1_biyh7")
 script = ExtResource("1_s6oj5")
@@ -81,10 +85,17 @@ shape = SubResource("CircleShape2D_jj0bg")
 [node name="HurtBoxComponent" parent="." unique_id=585889580 instance=ExtResource("8_s6oj5")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=689294166]
+visible = false
 shape = SubResource("CircleShape2D_biyh7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1934111886]
 libraries/ = SubResource("AnimationLibrary_biyh7")
+
+[node name="BodyComponent" parent="." unique_id=1501848664 instance=ExtResource("11_hd834")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyComponent" unique_id=323625194]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_8ynqg")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]

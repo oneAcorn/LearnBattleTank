@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dyvdnjkqpmoay"]
+
+[node name="BodyComponent" type="AnimatableBody2D" unique_id=1501848664]
+collision_layer = 64
+collision_mask = 32
+sync_to_physics = false

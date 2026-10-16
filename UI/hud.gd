@@ -4,7 +4,7 @@ extends Control
 @onready var health_bar: ProgressBar = $MarginContainer/HBoxContainer/PanelContainer2/HBoxContainer/HealthBar
 @onready var timer = $Timer
 @onready var notify_panel = $MarginContainer/NotifyPanel
-@onready var notify_label = $MarginContainer/NotifyPanel/NotifyLabel
+@onready var notify_label = $MarginContainer/NotifyPanel/VBoxContainer/NotifyLabel
 
 
 # Called when the node enters the scene tree for the first time.
