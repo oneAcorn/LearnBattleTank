@@ -12,6 +12,10 @@ func _ready() -> void:
 	weapon_component.material.set_shader_parameter("active", false)
 
 
+func _process(delta: float) -> void:
+	find_player()
+
+
 func _on_hurt_box_component_get_damage(damage: float) -> void:
 	#print("enemy tower hurt:%s" % damage)
 	animation_player.play("flash")
@@ -23,7 +27,7 @@ func _on_health_component_died() -> void:
 
 
 func find_player():
-	var player_pos: Node2D = detect_component.get_player_pos()
+	var player_pos = detect_component.get_player_pos()
 	if player_pos:
 		weapon_component.target(player_pos)
 		weapon_component.shoot(player_pos)

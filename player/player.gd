@@ -80,3 +80,11 @@ func _on_player_win():
 func _on_hurt_box_component_get_damage(_damage: float) -> void:
 	animation_player.play("flash")
 	shake_amount = SHAKE_MAX
+
+
+func upgrade_health():
+	health_component.upgrade(0.5)
+
+
+func upgrade_weapon():
+	weapon_component.upgrade(0.05)

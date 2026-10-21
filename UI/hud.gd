@@ -40,4 +40,4 @@ func on_update_score_Ui(score: int, total: int):
 
 
 func _on_continue_button_pressed() -> void:
-	pass  # Replace with function body.
+	GameManager.restart()

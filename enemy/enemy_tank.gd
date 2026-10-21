@@ -29,3 +29,4 @@ func find_player():
 	var player_pos = detect_component.get_player_pos()
 	if player_pos:
 		weapon_component.target(player_pos)
+		weapon_component.shoot(player_pos)

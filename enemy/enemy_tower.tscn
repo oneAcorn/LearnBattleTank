@@ -9,9 +9,16 @@
 [ext_resource type="PackedScene" uid="uid://c71g51lnk76o0" path="res://components/detect_component.tscn" id="4_d6b5u"]
 [ext_resource type="PackedScene" uid="uid://b0ktboaygj8y7" path="res://components/health_component.tscn" id="5_100w1"]
 [ext_resource type="PackedScene" uid="uid://cej114y0evb5u" path="res://object/enemy_bullet.tscn" id="5_sasw6"]
+[ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="5_xjhd7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sasw6"]
 radius = 28.85
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdtwd"]
+resource_local_to_scene = true
+shader = ExtResource("5_xjhd7")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xjhd7"]
 radius = 25.0
@@ -94,7 +101,7 @@ texture = ExtResource("1_o2pk4")
 shape = SubResource("CircleShape2D_sasw6")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("2_x20hq")]
-material = ExtResource("1_7awyw")
+material = SubResource("ShaderMaterial_rdtwd")
 bullet_scene = ExtResource("5_sasw6")
 
 [node name="Gun" parent="WeaponComponent" index="0" unique_id=294733802]
