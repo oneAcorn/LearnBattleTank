@@ -20,6 +20,8 @@ const SHAKE_MAX := 5.0  # 受击时初始抖动幅度
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	GameManager.player_win.connect(_on_player_win)
+	material.set_shader_parameter("active", false)
+	weapon_component.material.set_shader_parameter("active", false)
 
 
 func _process(delta: float) -> void:

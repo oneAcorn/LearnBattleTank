@@ -7,7 +7,13 @@ extends StaticBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
+func _ready() -> void:
+	material.set_shader_parameter("active", false)
+	weapon_component.material.set_shader_parameter("active", false)
+
+
 func _on_hurt_box_component_get_damage(damage: float) -> void:
+	#print("enemy tower hurt:%s" % damage)
 	animation_player.play("flash")
 
 

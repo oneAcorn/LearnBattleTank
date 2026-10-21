@@ -109,6 +109,7 @@ _data = {
 script = ExtResource("1_c862l")
 
 [node name="Gun" type="Sprite2D" parent="." unique_id=294733802]
+use_parent_material = true
 texture = ExtResource("1_ufn0f")
 offset = Vector2(10, 0)
 

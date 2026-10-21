@@ -17,6 +17,7 @@ stream_3/stream = ExtResource("6_odn1a")
 stream_4/stream = ExtResource("7_jsy2h")
 
 [node name="VFXManager" type="Node2D" unique_id=612723603]
+z_index = 10
 script = ExtResource("1_pb5xb")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=800747395]

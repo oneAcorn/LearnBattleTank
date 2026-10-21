@@ -36,9 +36,9 @@ func spawn_exp_particle(pos: Vector2):
 
 func on_entity_died(pos: Vector2, groups: Array):
 	if "Enemy" in groups:
-		expolode(pos, "regular_exp")
+		expolode(pos, "regular_explosion")
 	elif "Player" in groups:
-		expolode(pos, "sonic_exp")
+		expolode(pos, "sonic_explosion")
 
 
 func on_bullet_hit(pos: Vector2):
