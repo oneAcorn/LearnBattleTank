@@ -44,10 +44,13 @@ func spawn_wave():
 func spawn_enemy():
 	var enemy_tank = enemy_tank_scene.pick_random().instantiate()
 	var path = paths.pick_random()
+	enemy_tank.speed = randi_range(100, 150)
 	if enemy_tank is CharacterBody2D:
 		enemy_tank.points = path
-	enemy_tank.speed = randi_range(100, 150)
-	path.add_child(enemy_tank)
+		enemies_holder.add_child(enemy_tank)
+		enemy_tank.global_position = path.to_global(path.curve.get_point_position(0))
+	else:
+		path.add_child(enemy_tank)
 
 
 func check_wave_end(groups):
