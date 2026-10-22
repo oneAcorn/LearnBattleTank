@@ -27,7 +27,7 @@ func _on_health_component_died() -> void:
 
 
 func find_player():
-	var player_pos = detect_component.get_player_pos()
-	if player_pos:
+	if detect_component.can_see_player():
+		var player_pos = detect_component.get_player_pos()
 		weapon_component.target(player_pos)
 		weapon_component.shoot(player_pos)

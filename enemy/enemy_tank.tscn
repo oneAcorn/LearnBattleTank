@@ -110,7 +110,7 @@ max_health = 4.0
 
 [node name="DetectComponent" parent="." unique_id=2064680240 instance=ExtResource("6_v5g7f")]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectComponent" unique_id=1944452935]
 shape = SubResource("CircleShape2D_jj0bg")

@@ -2,12 +2,21 @@ extends Area2D
 
 var player_pos = null
 
+var player_ref: Player
+
+
+func can_see_player():
+	if has_overlapping_bodies():
+		var targets = get_overlapping_bodies()
+		if not targets.is_empty():
+			player_ref = targets[0]
+			return true
+	return false
+
 
 func get_player_pos():
-	if has_overlapping_areas():
-		var target = get_overlapping_areas()
-		if not target.is_empty():
-			return target[0].global_position
+	if player_ref:
+		return player_ref.global_position
 
 
 func find_player():

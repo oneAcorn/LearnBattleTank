@@ -104,8 +104,7 @@ func attack_player():
 
 
 func find_player():
-	player_pos = detect_component.get_player_pos()
-	if player_pos:
+	if detect_component.can_see_player():
+		player_pos = detect_component.get_player_pos()
 		return true
-	else:
-		return false
+	return false

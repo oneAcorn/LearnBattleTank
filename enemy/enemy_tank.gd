@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 
 
 func find_player():
+	if not detect_component.can_see_player():
+		return
 	var player_pos = detect_component.get_player_pos()
 	if player_pos:
 		weapon_component.target(player_pos)

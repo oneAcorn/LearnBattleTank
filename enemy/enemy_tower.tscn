@@ -14,7 +14,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_sasw6"]
 radius = 28.85
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdtwd"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sasw6"]
 resource_local_to_scene = true
 shader = ExtResource("5_xjhd7")
 shader_parameter/active = false
@@ -101,7 +101,7 @@ texture = ExtResource("1_o2pk4")
 shape = SubResource("CircleShape2D_sasw6")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("2_x20hq")]
-material = SubResource("ShaderMaterial_rdtwd")
+material = SubResource("ShaderMaterial_sasw6")
 bullet_scene = ExtResource("5_sasw6")
 
 [node name="Gun" parent="WeaponComponent" index="0" unique_id=294733802]
@@ -115,7 +115,7 @@ shape = SubResource("CircleShape2D_xjhd7")
 
 [node name="DetectComponent" parent="." unique_id=2064680240 instance=ExtResource("4_d6b5u")]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectComponent" unique_id=2138163098]
 shape = SubResource("CircleShape2D_7awyw")

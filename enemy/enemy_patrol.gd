@@ -18,7 +18,7 @@ func physics_update(_delta: float):
 	enemy.move()
 	if near_point():
 		find_next_point()
-	if detect_component.find_player():
+	if detect_component.can_see_player():
 		transitioned.emit(self, "EnemyAttack")
 
 

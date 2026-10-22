@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 @export var max_speed: float = 300
 @onready var engine_sound: AudioStreamPlayer = $EngineSound
