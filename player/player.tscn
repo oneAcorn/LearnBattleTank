@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cm7mfxg78qtu1" path="res://components/weapon_component.tscn" id="7_8t03j"]
 [ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="8_2ieo8"]
 [ext_resource type="PackedScene" uid="uid://c8jxcmtrrni0m" path="res://object/player_bullet.tscn" id="8_8t03j"]
+[ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="8_ebec5"]
 [ext_resource type="Texture2D" uid="uid://b6ij70gcxeyq0" path="res://assets/VFX/white_glowing_circle.png" id="9_hg6s5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g1dw6"]
@@ -16,6 +17,12 @@ size = Vector2(52, 49)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ebec5"]
 radius = 25.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yllr7"]
+resource_local_to_scene = true
+shader = ExtResource("8_ebec5")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="Curve" id="Curve_8t03j"]
 _data = [Vector2(0, 0.28779483), 0.0, 0.0, 0, 0, Vector2(1, 0.5131762), 0.0, 0.0, 0, 0]
@@ -87,7 +94,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" unique_id=2052937105 groups=["Player"]]
 material = ExtResource("1_hg6s5")
-collision_layer = 32
+collision_layer = 0
 collision_mask = 208
 script = ExtResource("1_g1dw6")
 
@@ -114,7 +121,7 @@ collision_mask = 4
 shape = SubResource("CircleShape2D_ebec5")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("7_8t03j")]
-material = ExtResource("1_hg6s5")
+material = SubResource("ShaderMaterial_yllr7")
 bullet_scene = ExtResource("8_8t03j")
 
 [node name="TrailComponent" parent="." unique_id=648980880 instance=ExtResource("8_2ieo8")]
