@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://c71g51lnk76o0" path="res://components/detect_component.tscn" id="9_71wew"]
 [ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="10_squin"]
 [ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="11_xj3bo"]
-[ext_resource type="PackedScene" uid="uid://dyvdnjkqpmoay" path="res://components/body_component.tscn" id="12_pjc1e"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tkaak"]
 resource_local_to_scene = true
@@ -89,11 +88,10 @@ _data = {
 &"flash": SubResource("Animation_s6oj5")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ynqg"]
-size = Vector2(41, 42)
-
 [node name="EnemyTank" type="CharacterBody2D" unique_id=747929265 groups=["Enemy", "EnemyTank"]]
 material = ExtResource("1_kn2v8")
+collision_layer = 64
+collision_mask = 112
 script = ExtResource("2_kn2v8")
 
 [node name="StateMachine" parent="." unique_id=2094848143 node_paths=PackedStringArray("initial_state") instance=ExtResource("3_8fsot")]
@@ -124,7 +122,6 @@ texture = ExtResource("7_keoqw")
 max_health = 4.0
 
 [node name="DetectComponent" parent="." unique_id=2064680240 instance=ExtResource("9_71wew")]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -134,22 +131,13 @@ shape = SubResource("CircleShape2D_jj0bg")
 [node name="TrailComponent" parent="." unique_id=648980880 instance=ExtResource("10_squin")]
 
 [node name="HurtBoxComponent" parent="." unique_id=585889580 instance=ExtResource("11_xj3bo")]
-visible = false
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=689294166]
-visible = false
 shape = SubResource("CircleShape2D_biyh7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1934111886]
 libraries/ = SubResource("AnimationLibrary_biyh7")
-
-[node name="BodyComponent" parent="." unique_id=1501848664 instance=ExtResource("12_pjc1e")]
-visible = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyComponent" unique_id=323625194]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_8ynqg")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="get_damage" from="HurtBoxComponent" to="HealthComponent" method="get_damage"]

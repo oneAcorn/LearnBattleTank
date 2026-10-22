@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="8_s6oj5"]
 [ext_resource type="PackedScene" uid="uid://dyvdnjkqpmoay" path="res://components/body_component.tscn" id="11_hd834"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0b7om"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ynqg"]
 resource_local_to_scene = true
 shader = ExtResource("5_8ynqg")
 shader_parameter/active = false
@@ -98,7 +98,7 @@ use_parent_material = true
 texture = ExtResource("1_cgxbv")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("2_pg0ft")]
-material = SubResource("ShaderMaterial_0b7om")
+material = SubResource("ShaderMaterial_8ynqg")
 cool_down = 0.8
 bullet_scene = ExtResource("3_p5qdc")
 
@@ -109,7 +109,6 @@ texture = ExtResource("4_v5g7f")
 max_health = 4.0
 
 [node name="DetectComponent" parent="." unique_id=2064680240 instance=ExtResource("6_v5g7f")]
-visible = false
 collision_layer = 0
 collision_mask = 2
 
@@ -119,18 +118,16 @@ shape = SubResource("CircleShape2D_jj0bg")
 [node name="TrailComponent" parent="." unique_id=648980880 instance=ExtResource("7_jj0bg")]
 
 [node name="HurtBoxComponent" parent="." unique_id=585889580 instance=ExtResource("8_s6oj5")]
-visible = false
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=689294166]
-visible = false
 shape = SubResource("CircleShape2D_biyh7")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1934111886]
 libraries/ = SubResource("AnimationLibrary_biyh7")
 
 [node name="BodyComponent" parent="." unique_id=1501848664 instance=ExtResource("11_hd834")]
-visible = false
+collision_mask = 112
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BodyComponent" unique_id=323625194]
 position = Vector2(0.5, 0)
