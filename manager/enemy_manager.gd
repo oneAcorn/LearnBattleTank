@@ -2,7 +2,7 @@ extends Node
 
 signal wave_died
 
-@export var enemy_tank_scene: PackedScene
+@export var enemy_tank_scene: Array[PackedScene] = []
 var died_tank: int
 var died_enemy: int
 var total_enemy_size: int
@@ -42,8 +42,10 @@ func spawn_wave():
 
 
 func spawn_enemy():
-	var enemy_tank = enemy_tank_scene.instantiate()
+	var enemy_tank = enemy_tank_scene.pick_random().instantiate()
 	var path = paths.pick_random()
+	if enemy_tank is CharacterBody2D:
+		enemy_tank.points = path
 	enemy_tank.speed = randi_range(100, 150)
 	path.add_child(enemy_tank)
 

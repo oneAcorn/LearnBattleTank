@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+## sample FSM(Finite State Machine) 状态变量有限状态机
+
 enum FSMState { Patrol, Chase }
 var direction := Vector2.RIGHT
 var points_arr: Array  # 坦克移动时需要经过的巡逻点
@@ -36,8 +38,12 @@ func _physics_process(delta: float) -> void:
 
 
 func get_points():
-	for point in points.get_children():
-		points_arr.append(point.global_position)
+	if points is Path2D:
+		for p in points.curve.get_baked_points():
+			points_arr.append(points.to_global(p))
+	else:
+		for point in points.get_children():
+			points_arr.append(point.global_position)
 
 
 func find_next_point():
