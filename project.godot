@@ -83,6 +83,7 @@ shoot={
 2d_physics/layer_6="PlayerBody"
 2d_physics/layer_7="EnemyBody"
 2d_physics/layer_8="PickUp"
+2d_physics/layer_9="PlayerOnlyBarrier"
 
 [physics]
 

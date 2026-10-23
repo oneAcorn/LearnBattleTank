@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://pgpco25am4wm" path="res://assets/item/treeGreen_large.png" id="2_1p2fm"]
 [ext_resource type="Texture2D" uid="uid://ccuq8n175ewyr" path="res://assets/item/treeBrown_large.png" id="3_21468"]
 [ext_resource type="Texture2D" uid="uid://b01xeym4lilci" path="res://assets/map/stone.png" id="4_x5gj5"]
+[ext_resource type="Texture2D" uid="uid://oo0w0y5u7a4s" path="res://assets/item/treeGreen_small_64.png" id="5_1p2fm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5jdw0"]
 texture = ExtResource("1_gsfo6")
@@ -160,6 +161,7 @@ texture = ExtResource("3_21468")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/terrain_set = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_112ik"]
 texture = ExtResource("4_x5gj5")
@@ -171,10 +173,18 @@ texture_region_size = Vector2i(64, 64)
 2:0/0 = 0
 2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_21468"]
+texture = ExtResource("5_1p2fm")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 16
 physics_layer_0/collision_mask = 96
+physics_layer_1/collision_layer = 256
+physics_layer_1/collision_mask = 32
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -184,3 +194,4 @@ sources/0 = SubResource("TileSetAtlasSource_5jdw0")
 sources/1 = SubResource("TileSetAtlasSource_kxmgb")
 sources/2 = SubResource("TileSetAtlasSource_e8e5r")
 sources/3 = SubResource("TileSetAtlasSource_112ik")
+sources/7 = SubResource("TileSetAtlasSource_21468")
