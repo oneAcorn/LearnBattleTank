@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c42o8yjn6dvnk"]
+
+[ext_resource type="Script" uid="uid://d0a3jsu74gnso" path="res://components/missile_launch_component.gd" id="1_pe0rc"]
+[ext_resource type="Texture2D" uid="uid://cydluwlcjvt6w" path="res://assets/enemy/towerDefense_tile204.png" id="2_psio7"]
+[ext_resource type="AudioStream" uid="uid://n1860w8cfbje" path="res://assets/sound/rocket.ogg" id="3_hak5w"]
+
+[node name="MissileLaunchComponent" type="Node2D" unique_id=688722551]
+script = ExtResource("1_pe0rc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1966571267]
+use_parent_material = true
+texture = ExtResource("2_psio7")
+
+[node name="Marker2D" type="Marker2D" parent="Sprite2D" unique_id=529672461]
+position = Vector2(46, 9)
+
+[node name="Marker2D2" type="Marker2D" parent="Sprite2D" unique_id=1615029285]
+position = Vector2(46, -9)
+
+[node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=708748145]
+stream = ExtResource("3_hak5w")
+volume_db = -14.3
+
+[node name="Timer" type="Timer" parent="." unique_id=1279359601]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

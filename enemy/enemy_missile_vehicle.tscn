@@ -1,0 +1,154 @@
+[gd_scene format=3 uid="uid://ds0uux0hqye4j"]
+
+[ext_resource type="Texture2D" uid="uid://bpi5g403vtl7n" path="res://assets/tank/tankBody_darkLarge_outline.png" id="1_3a1fs"]
+[ext_resource type="Material" uid="uid://y7crwjkkape3" path="res://assets/material/flash.tres" id="1_gk373"]
+[ext_resource type="PackedScene" uid="uid://c42o8yjn6dvnk" path="res://components/missile_launch_component.tscn" id="2_gk373"]
+[ext_resource type="Script" uid="uid://dnr6ud5ejv3f5" path="res://enemy/enemy_missile_vehicle.gd" id="2_hw2js"]
+[ext_resource type="PackedScene" uid="uid://d2xkpmsax0y46" path="res://object/enemy_missile.tscn" id="3_hw2js"]
+[ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="4_spaq4"]
+[ext_resource type="PackedScene" uid="uid://c71g51lnk76o0" path="res://components/detect_component.tscn" id="5_dmyu7"]
+[ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="5_spaq4"]
+[ext_resource type="PackedScene" uid="uid://bpdum05bhwdrg" path="res://components/avoid_component.tscn" id="6_daxj6"]
+[ext_resource type="PackedScene" uid="uid://b0ktboaygj8y7" path="res://components/health_component.tscn" id="7_3hhno"]
+[ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="8_4w7k5"]
+[ext_resource type="PackedScene" uid="uid://cxf5q23h0gu8d" path="res://enemy/state_machine.tscn" id="9_q34op"]
+[ext_resource type="PackedScene" uid="uid://dc6x7fqwuvnsi" path="res://enemy/enemy_patrol.tscn" id="10_pdrvg"]
+[ext_resource type="PackedScene" uid="uid://bc4k5xp8hcjch" path="res://enemy/enemy_wander.tscn" id="11_81jp7"]
+[ext_resource type="PackedScene" uid="uid://bh07wt5aincbm" path="res://enemy/enemy_attack.tscn" id="12_k11lw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0uuo1"]
+radius = 30.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmyu7"]
+resource_local_to_scene = true
+shader = ExtResource("5_spaq4")
+shader_parameter/active = true
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tytbk"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3v7dl"]
+radius = 400.0
+
+[sub_resource type="Animation" id="Animation_hw2js"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MissileLaunchComponent:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_3a1fs"]
+resource_name = "flash"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/active")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MissileLaunchComponent:material:shader_parameter/active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gk373"]
+_data = {
+&"RESET": SubResource("Animation_hw2js"),
+&"flash": SubResource("Animation_3a1fs")
+}
+
+[node name="EnemyMissileVehicle" type="CharacterBody2D" unique_id=63837127 groups=["Enemy", "EnemyTank"]]
+material = ExtResource("1_gk373")
+collision_layer = 64
+collision_mask = 112
+script = ExtResource("2_hw2js")
+
+[node name="Base" type="Sprite2D" parent="." unique_id=63825461]
+use_parent_material = true
+rotation = -1.5707964
+texture = ExtResource("1_3a1fs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=425044854]
+shape = SubResource("CircleShape2D_0uuo1")
+
+[node name="MissileLaunchComponent" parent="." unique_id=688722551 instance=ExtResource("2_gk373")]
+material = SubResource("ShaderMaterial_dmyu7")
+cool_down = 2.0
+missile_scene = ExtResource("3_hw2js")
+
+[node name="HurtBoxComponent" parent="." unique_id=585889580 instance=ExtResource("4_spaq4")]
+collision_layer = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=503638504]
+shape = SubResource("CircleShape2D_tytbk")
+
+[node name="DetectComponent" parent="." unique_id=2064680240 instance=ExtResource("5_dmyu7")]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectComponent" unique_id=1417818784]
+shape = SubResource("CircleShape2D_3v7dl")
+
+[node name="AvoidComponent" parent="." unique_id=1655326643 instance=ExtResource("6_daxj6")]
+
+[node name="HealthComponent" parent="." unique_id=1640159736 instance=ExtResource("7_3hhno")]
+
+[node name="TrailComponent" parent="." unique_id=648980880 instance=ExtResource("8_4w7k5")]
+
+[node name="StateMachine" parent="." unique_id=2094848143 node_paths=PackedStringArray("initial_state") instance=ExtResource("9_q34op")]
+initial_state = NodePath("EnemyPatrol")
+
+[node name="EnemyPatrol" parent="StateMachine" unique_id=388779528 node_paths=PackedStringArray("enemy", "detect_component") instance=ExtResource("10_pdrvg")]
+enemy = NodePath("../..")
+detect_component = NodePath("../../DetectComponent")
+
+[node name="EnemyWander" parent="StateMachine" unique_id=1764500108 node_paths=PackedStringArray("enemy", "search_component") instance=ExtResource("11_81jp7")]
+enemy = NodePath("../..")
+search_component = NodePath("../../DetectComponent")
+
+[node name="EnemyAttack" parent="StateMachine" unique_id=56227992 node_paths=PackedStringArray("enemy", "detect_component", "weapon_component") instance=ExtResource("12_k11lw")]
+enemy = NodePath("../..")
+detect_component = NodePath("../../DetectComponent")
+weapon_component = NodePath("../../MissileLaunchComponent")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1183810511]
+libraries/ = SubResource("AnimationLibrary_gk373")
+
+[connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]
+[connection signal="get_damage" from="HurtBoxComponent" to="HealthComponent" method="get_damage"]
+[connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]

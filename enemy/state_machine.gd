@@ -30,6 +30,7 @@ func on_child_transition(state, new_state_name):
 	var new_state = states.get(new_state_name)
 	if not new_state:
 		return
+	#print("enemy %s from %s trans to %s" % [owner.name, state.name, new_state_name])
 	if current_state:
 		current_state.exit()
 	new_state.enter()

@@ -3,16 +3,16 @@
 [ext_resource type="Material" uid="uid://y7crwjkkape3" path="res://assets/material/flash.tres" id="1_kn2v8"]
 [ext_resource type="Script" uid="uid://2xu1gvnahoqj" path="res://enemy/enemy_tank_state_pattern.gd" id="2_kn2v8"]
 [ext_resource type="PackedScene" uid="uid://cxf5q23h0gu8d" path="res://enemy/state_machine.tscn" id="3_8fsot"]
-[ext_resource type="Texture2D" uid="uid://bhk8vln4ofxst" path="res://assets/tank/tankBody_blue_outline.png" id="3_8r5k2"]
 [ext_resource type="PackedScene" uid="uid://dc6x7fqwuvnsi" path="res://enemy/enemy_patrol.tscn" id="4_3l5o0"]
 [ext_resource type="PackedScene" uid="uid://cm7mfxg78qtu1" path="res://components/weapon_component.tscn" id="4_8fsot"]
 [ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="5_3l5o0"]
 [ext_resource type="PackedScene" uid="uid://bh07wt5aincbm" path="res://enemy/enemy_attack.tscn" id="5_i8ww4"]
 [ext_resource type="PackedScene" uid="uid://bc4k5xp8hcjch" path="res://enemy/enemy_wander.tscn" id="6_3l5o0"]
 [ext_resource type="PackedScene" uid="uid://cej114y0evb5u" path="res://object/enemy_bullet.tscn" id="6_i8ww4"]
-[ext_resource type="Texture2D" uid="uid://csatgo6ympb7f" path="res://assets/tank/tankBlue_barrel3_outline.png" id="7_keoqw"]
+[ext_resource type="Texture2D" uid="uid://cb7ugqw0ygssv" path="res://assets/tank/tankBody_dark.png" id="7_3l5o0"]
 [ext_resource type="PackedScene" uid="uid://b0ktboaygj8y7" path="res://components/health_component.tscn" id="8_tbyuh"]
 [ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="10_squin"]
+[ext_resource type="Texture2D" uid="uid://dgnaq5dx1pggu" path="res://assets/tank/specialBarrel4_outline.png" id="11_i8ww4"]
 [ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="11_xj3bo"]
 [ext_resource type="PackedScene" uid="uid://bhj7h7jxq6c6v" path="res://components/search_component.tscn" id="14_8fsot"]
 [ext_resource type="PackedScene" uid="uid://bpdum05bhwdrg" path="res://components/avoid_component.tscn" id="15_3l5o0"]
@@ -20,7 +20,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r5k2"]
 size = Vector2(39, 40)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fsot"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_keoqw"]
 resource_local_to_scene = true
 shader = ExtResource("5_3l5o0")
 shader_parameter/active = false
@@ -117,15 +117,25 @@ search_component = NodePath("../../SearchComponent")
 
 [node name="Base" type="Sprite2D" parent="." unique_id=1199357807]
 use_parent_material = true
-texture = ExtResource("3_8r5k2")
+rotation = 1.5707964
+texture = ExtResource("7_3l5o0")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("4_8fsot")]
-material = SubResource("ShaderMaterial_8fsot")
+material = SubResource("ShaderMaterial_keoqw")
 cool_down = 0.8
 bullet_scene = ExtResource("6_i8ww4")
 
 [node name="Gun" parent="WeaponComponent" index="0" unique_id=294733802]
-texture = ExtResource("7_keoqw")
+rotation = -1.5707964
+texture = ExtResource("11_i8ww4")
+offset = Vector2(0, 15)
+
+[node name="MuzzleMarker" parent="WeaponComponent/Gun" index="0" unique_id=1432686405]
+position = Vector2(-1, 39.000004)
+
+[node name="Fire" parent="WeaponComponent/Gun" index="1" unique_id=452773721]
+position = Vector2(-1, 50)
+rotation = 0.0
 
 [node name="HealthComponent" parent="." unique_id=1640159736 instance=ExtResource("8_tbyuh")]
 max_health = 4.0

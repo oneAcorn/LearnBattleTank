@@ -31,8 +31,9 @@ func shoot(target_pos: Vector2):
 	var bullet: Node2D = bullet_scene.instantiate()
 	bullet.global_position = muzzle_marker.global_position
 	bullet.look_at(target_pos)
-	bullet.top_level = true
-	add_child(bullet)
+	#bullet.top_level = true
+	#add_child(bullet)
+	get_tree().current_scene.add_child(bullet)
 
 
 func upgrade(value):

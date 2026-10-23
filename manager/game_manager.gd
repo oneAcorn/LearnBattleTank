@@ -10,7 +10,7 @@ signal score_update
 signal update_score_ui(score: int, total: int)
 
 var score: int = 0
-var enemy_size: int = 3  #敌人总数
+var enemy_size: int = 3  #敌人总数d
 
 
 # Called when the node enters the scene tree for the first time.

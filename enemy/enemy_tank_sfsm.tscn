@@ -2,11 +2,11 @@
 
 [ext_resource type="Material" uid="uid://y7crwjkkape3" path="res://assets/material/flash.tres" id="1_t46nx"]
 [ext_resource type="Script" uid="uid://0pqsnum6jpdb" path="res://enemy/enemy_tank_sfsm.gd" id="2_t46nx"]
-[ext_resource type="Texture2D" uid="uid://bhk8vln4ofxst" path="res://assets/tank/tankBody_blue_outline.png" id="3_6mvx6"]
+[ext_resource type="Texture2D" uid="uid://d335e0wqjrpf0" path="res://assets/tank/tankBody_huge_outline.png" id="3_t46nx"]
 [ext_resource type="PackedScene" uid="uid://cm7mfxg78qtu1" path="res://components/weapon_component.tscn" id="4_50mbo"]
 [ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="5_wbidl"]
 [ext_resource type="PackedScene" uid="uid://cej114y0evb5u" path="res://object/enemy_bullet.tscn" id="6_p1k0c"]
-[ext_resource type="Texture2D" uid="uid://csatgo6ympb7f" path="res://assets/tank/tankBlue_barrel3_outline.png" id="7_cxcgx"]
+[ext_resource type="Texture2D" uid="uid://c0nhhvupko5j8" path="res://assets/tank/specialBarrel7.png" id="7_oscaw"]
 [ext_resource type="PackedScene" uid="uid://b0ktboaygj8y7" path="res://components/health_component.tscn" id="8_wgxcs"]
 [ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="10_jhjy6"]
 [ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="11_btbx7"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bpdum05bhwdrg" path="res://components/avoid_component.tscn" id="12_t46nx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bmjda"]
-size = Vector2(39, 40)
+size = Vector2(61, 58)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_t46nx"]
 resource_local_to_scene = true
@@ -92,13 +92,14 @@ collision_layer = 64
 collision_mask = 112
 script = ExtResource("2_t46nx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1392235021]
-position = Vector2(1.5, 0)
-shape = SubResource("RectangleShape2D_bmjda")
-
 [node name="Base" type="Sprite2D" parent="." unique_id=1199357807]
 use_parent_material = true
-texture = ExtResource("3_6mvx6")
+rotation = -1.5707964
+texture = ExtResource("3_t46nx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1392235021]
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_bmjda")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("4_50mbo")]
 material = SubResource("ShaderMaterial_t46nx")
@@ -106,7 +107,16 @@ cool_down = 0.8
 bullet_scene = ExtResource("6_p1k0c")
 
 [node name="Gun" parent="WeaponComponent" index="0" unique_id=294733802]
-texture = ExtResource("7_cxcgx")
+rotation = -1.5707964
+texture = ExtResource("7_oscaw")
+offset = Vector2(0, 10)
+
+[node name="MuzzleMarker" parent="WeaponComponent/Gun" index="0" unique_id=1432686405]
+position = Vector2(0, 33.000004)
+
+[node name="Fire" parent="WeaponComponent/Gun" index="1" unique_id=452773721]
+position = Vector2(0, 40)
+rotation = 0.0
 
 [node name="HealthComponent" parent="." unique_id=1640159736 instance=ExtResource("8_wgxcs")]
 max_health = 4.0

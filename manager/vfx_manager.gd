@@ -39,6 +39,8 @@ func on_entity_died(pos: Vector2, groups: Array):
 		expolode(pos, "regular_explosion")
 	elif "Player" in groups:
 		expolode(pos, "sonic_explosion")
+	elif "EnemyMissile" in groups:
+		expolode(pos, "explosion")
 
 
 func on_bullet_hit(pos: Vector2):
