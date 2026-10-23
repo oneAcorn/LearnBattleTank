@@ -17,11 +17,3 @@ func can_see_player():
 func get_player_pos():
 	if player_ref:
 		return player_ref.global_position
-
-
-func find_player():
-	player_pos = get_player_pos()
-	if player_pos:
-		return true
-	else:
-		return false

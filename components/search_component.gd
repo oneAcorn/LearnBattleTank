@@ -21,10 +21,21 @@ func player_detect() -> bool:
 	return false
 
 
+#region detect_component公用接口
+
+
 func can_see_player() -> bool:
 	if get_player_angle() < PI / 2 and player_detect():
 		return true
 	return false
+
+
+func get_player_pos():
+	if player_ref:
+		return player_ref.global_position
+
+
+#endregion
 
 
 func get_player_angle() -> float:

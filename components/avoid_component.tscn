@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bpdum05bhwdrg"]
+
+[ext_resource type="Script" uid="uid://ct7co85aex25w" path="res://components/avoid_component.gd" id="1_jm5my"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ex2g4"]
+radius = 20.0
+
+[node name="AvoidComponent" type="ShapeCast2D" unique_id=1655326643]
+shape = SubResource("CircleShape2D_ex2g4")
+target_position = Vector2(50, 0)
+collision_mask = 16
+script = ExtResource("1_jm5my")

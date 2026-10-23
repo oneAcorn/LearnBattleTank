@@ -13,7 +13,7 @@ var cur_state = FSMState.Patrol
 
 @export var speed: float = 100
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var detect_component = $DetectComponent
+@onready var detect_component = $SearchComponent
 @onready var weapon_component = $WeaponComponent
 
 

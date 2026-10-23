@@ -8,18 +8,19 @@
 [ext_resource type="PackedScene" uid="uid://cej114y0evb5u" path="res://object/enemy_bullet.tscn" id="6_p1k0c"]
 [ext_resource type="Texture2D" uid="uid://csatgo6ympb7f" path="res://assets/tank/tankBlue_barrel3_outline.png" id="7_cxcgx"]
 [ext_resource type="PackedScene" uid="uid://b0ktboaygj8y7" path="res://components/health_component.tscn" id="8_wgxcs"]
-[ext_resource type="PackedScene" uid="uid://c71g51lnk76o0" path="res://components/detect_component.tscn" id="9_4ey43"]
 [ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="10_jhjy6"]
 [ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="11_btbx7"]
+[ext_resource type="PackedScene" uid="uid://bhj7h7jxq6c6v" path="res://components/search_component.tscn" id="11_t46nx"]
+[ext_resource type="PackedScene" uid="uid://bpdum05bhwdrg" path="res://components/avoid_component.tscn" id="12_t46nx"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmjda"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmjda"]
+size = Vector2(39, 40)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t46nx"]
 resource_local_to_scene = true
 shader = ExtResource("5_wbidl")
 shader_parameter/active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_jj0bg"]
-radius = 342.95
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_biyh7"]
 radius = 22.56
@@ -91,12 +92,16 @@ collision_layer = 64
 collision_mask = 112
 script = ExtResource("2_t46nx")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1392235021]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_bmjda")
+
 [node name="Base" type="Sprite2D" parent="." unique_id=1199357807]
 use_parent_material = true
 texture = ExtResource("3_6mvx6")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("4_50mbo")]
-material = SubResource("ShaderMaterial_bmjda")
+material = SubResource("ShaderMaterial_t46nx")
 cool_down = 0.8
 bullet_scene = ExtResource("6_p1k0c")
 
@@ -106,13 +111,6 @@ texture = ExtResource("7_cxcgx")
 [node name="HealthComponent" parent="." unique_id=1640159736 instance=ExtResource("8_wgxcs")]
 max_health = 4.0
 
-[node name="DetectComponent" parent="." unique_id=2064680240 instance=ExtResource("9_4ey43")]
-collision_layer = 0
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectComponent" unique_id=1944452935]
-shape = SubResource("CircleShape2D_jj0bg")
-
 [node name="TrailComponent" parent="." unique_id=648980880 instance=ExtResource("10_jhjy6")]
 
 [node name="HurtBoxComponent" parent="." unique_id=585889580 instance=ExtResource("11_btbx7")]
@@ -120,6 +118,10 @@ collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent" unique_id=689294166]
 shape = SubResource("CircleShape2D_biyh7")
+
+[node name="SearchComponent" parent="." unique_id=1932780342 instance=ExtResource("11_t46nx")]
+
+[node name="AvoidComponent" parent="." unique_id=1655326643 instance=ExtResource("12_t46nx")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1934111886]
 libraries/ = SubResource("AnimationLibrary_biyh7")
