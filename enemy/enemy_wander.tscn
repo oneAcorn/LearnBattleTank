@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bc4k5xp8hcjch"]
+
+[ext_resource type="Script" uid="uid://cav88xmswoi4" path="res://enemy/enemy_wander.gd" id="1_1qsai"]
+
+[node name="EnemyWander" type="Node" unique_id=1764500108]
+script = ExtResource("1_1qsai")
+metadata/_custom_type_script = "uid://7wo25avva72n"
+
+[node name="Timer" type="Timer" parent="." unique_id=1777643076]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -15,6 +15,7 @@ var cur_state = FSMState.Patrol
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var detect_component = $SearchComponent
 @onready var weapon_component = $WeaponComponent
+@onready var avoid_component: Node2D = $AvoidComponent
 
 
 func _ready() -> void:
@@ -55,8 +56,11 @@ func find_next_point():
 
 func update_direction():
 	direction = global_position.direction_to(target_pos)
+	if avoid_component.obstackes_detected():
+		direction = avoid_component.get_new_direction()
 	var angle_rad = direction.angle()
-	rotation = angle_rad
+	var delta = get_physics_process_delta_time()
+	rotation = rotate_toward(rotation, angle_rad, 2 * PI * delta)
 
 
 func move_to_target():

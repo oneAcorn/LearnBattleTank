@@ -15,4 +15,4 @@ func physics_update(_delta: float):
 		weapon_component.target(target_pos)
 		weapon_component.shoot(target_pos)
 	else:
-		transitioned.emit(self, "EnemyPatrol")
+		transitioned.emit(self, "EnemyWander")

@@ -7,18 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dyy0wgn3tnqkc" path="res://manager/enemy_manager.tscn" id="3_y36n6"]
 [ext_resource type="PackedScene" uid="uid://knjf0qhl3qla" path="res://enemy/enemy_tower.tscn" id="4_dakft"]
 [ext_resource type="PackedScene" uid="uid://c8pvblcjgburb" path="res://manager/pickup_manager.tscn" id="4_l8g03"]
-[ext_resource type="PackedScene" uid="uid://dj3a68t8beq24" path="res://enemy/enemy_tank.tscn" id="5_3vho3"]
 [ext_resource type="PackedScene" uid="uid://ca8o6o7drvljx" path="res://manager/vfx_manager.tscn" id="5_dakft"]
 [ext_resource type="PackedScene" uid="uid://bxoddk5xsrnen" path="res://VFX/explosion_anim.tscn" id="6_u5opy"]
-[ext_resource type="PackedScene" uid="uid://d0fs45qd1s3a3" path="res://enemy/enemy_tank_sfsm.tscn" id="7_sfsm"]
 [ext_resource type="PackedScene" uid="uid://bgemqgwdw0b3k" path="res://enemy/enemy_tank_state_pattern.tscn" id="7_vsp63"]
 [ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="9_3vho3"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3vho3"]
-resource_local_to_scene = true
-shader = ExtResource("9_3vho3")
-shader_parameter/active = false
-shader_parameter/flash_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qf6n1"]
 resource_local_to_scene = true
@@ -56,6 +48,12 @@ shader = ExtResource("9_3vho3")
 shader_parameter/active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ln7ps"]
+resource_local_to_scene = true
+shader = ExtResource("9_3vho3")
+shader_parameter/active = false
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+
 [sub_resource type="Curve2D" id="Curve2D_dakft"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 4, -135, 0, 0, 0, 0, -3, 200, 0, 0, 0, 0, -48, 219, 0, 0, 0, 0, -56, 326, 0, 0, 0, 0, 1, 348, 0, 0, 0, 0, 8, 449, 0, 0, 0, 0, 53, 476, 0, 0, 0, 0, 81, 594, 0, 0, 0, 0, 687, 601, 0, 0, 0, 0, 715, 650, 0, 0, 0, 0, 825, 671, 0, 0, 0, 0, 850, 714, 0, 0, 0, 0, 1018, 731, 0, 0, 0, 0, 1033, 781, 0, 0, 0, 0, 1255, 789, 0, 0, 0, 0, 1298, 843, 0, 0, 0, 0, 1470, 871, 0, 0, 0, 0, 1481, 914, 0, 0, 0, 0, 1581, 907, 0, 0, 0, 0, 1607, 787, 0, 0, 0, 0, 1663, 772, 0, 0, 0, 0, 1667, 541, 0, 0, 0, 0, 1731, 515, 0, 0, 0, 0, 1776, 461, 0, 0, 0, 0, 1804, -139)
@@ -87,7 +85,7 @@ exp_anim_scene = ExtResource("6_u5opy")
 exp_particle_scene = ExtResource("3_j8tme")
 
 [node name="EnemyManager" parent="." unique_id=341414422 node_paths=PackedStringArray("path_holder", "enemies_holder") instance=ExtResource("3_y36n6")]
-enemy_tank_scene = Array[PackedScene]([ExtResource("5_3vho3"), ExtResource("7_sfsm"), ExtResource("7_vsp63")])
+enemy_tank_scene = Array[PackedScene]([ExtResource("7_vsp63")])
 path_holder = NodePath("../Path")
 enemies_holder = NodePath("../Enemies")
 
@@ -96,7 +94,7 @@ enemies_holder = NodePath("../Enemies")
 [node name="Map" parent="." unique_id=478418841 instance=ExtResource("1_dakft")]
 
 [node name="Player" parent="." unique_id=283867489 instance=ExtResource("2_4fuuu")]
-material = SubResource("ShaderMaterial_3vho3")
+material = SubResource("ShaderMaterial_qf6n1")
 position = Vector2(1052, 354)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=2084516245]
@@ -106,27 +104,27 @@ position = Vector2(1052, 354)
 [node name="Enemies" type="Node2D" parent="." unique_id=1959983416]
 
 [node name="EnemyTower" parent="Enemies" unique_id=1438735698 instance=ExtResource("4_dakft")]
-material = SubResource("ShaderMaterial_qf6n1")
+material = SubResource("ShaderMaterial_vsp63")
 position = Vector2(301, 131)
 
 [node name="EnemyTower2" parent="Enemies" unique_id=815601666 instance=ExtResource("4_dakft")]
-material = SubResource("ShaderMaterial_vsp63")
+material = SubResource("ShaderMaterial_b686c")
 position = Vector2(253, 613)
 
 [node name="EnemyTower3" parent="Enemies" unique_id=1771407937 instance=ExtResource("4_dakft")]
-material = SubResource("ShaderMaterial_b686c")
+material = SubResource("ShaderMaterial_hb504")
 position = Vector2(991, 1198)
 
 [node name="EnemyTower4" parent="Enemies" unique_id=1861381400 instance=ExtResource("4_dakft")]
-material = SubResource("ShaderMaterial_hb504")
+material = SubResource("ShaderMaterial_ee6o4")
 position = Vector2(1863, 221)
 
 [node name="EnemyTower5" parent="Enemies" unique_id=1444395896 instance=ExtResource("4_dakft")]
-material = SubResource("ShaderMaterial_ee6o4")
+material = SubResource("ShaderMaterial_4cobl")
 position = Vector2(2096, 932)
 
 [node name="EnemyTower6" parent="Enemies" unique_id=971897558 instance=ExtResource("4_dakft")]
-material = SubResource("ShaderMaterial_4cobl")
+material = SubResource("ShaderMaterial_ln7ps")
 position = Vector2(2231, 1354)
 
 [node name="Path" type="Node2D" parent="." unique_id=750276185]
