@@ -1,6 +1,9 @@
 @tool
 extends EditorScript
 
+## 将与障碍物重叠的草地换成无导航的草地的工具.
+## 用于NavigationAgent导航,使其知道哪个草地可以走.
+
 const GRASS_LAYER := "Grass"
 const OBSTACLE_LAYERS := ["Border", "Items", "Tree"]
 const PHYSICS_LAYERS := [0]  # TileSet 物理层索引；要连 PlayerOnlyBarrier 一起处理就加 1
