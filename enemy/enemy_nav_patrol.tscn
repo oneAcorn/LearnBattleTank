@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cx0q6bp48f0y1"]
+
+[ext_resource type="Script" uid="uid://c7o7hhnl4vxw" path="res://enemy/enemy_nav_patrol.gd" id="1_oo3yk"]
+
+[node name="EnemyNavPatrol" type="Node" unique_id=56314726]
+script = ExtResource("1_oo3yk")
+metadata/_custom_type_script = "uid://7wo25avva72n"

@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dh6ih7hnxno1f"]
+
+[ext_resource type="Script" uid="uid://dmd05r7kckp1a" path="res://enemy/enemy_nav_attack.gd" id="1_ndaqt"]
+
+[node name="EnemyNavAttack" type="Node" unique_id=1758397723]
+script = ExtResource("1_ndaqt")
+metadata/_custom_type_script = "uid://7wo25avva72n"

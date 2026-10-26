@@ -8,18 +8,17 @@
 [ext_resource type="PackedScene" uid="uid://ddmo6hr4n27ky" path="res://components/hurt_box_component.tscn" id="4_spaq4"]
 [ext_resource type="PackedScene" uid="uid://c71g51lnk76o0" path="res://components/detect_component.tscn" id="5_dmyu7"]
 [ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="5_spaq4"]
-[ext_resource type="PackedScene" uid="uid://bpdum05bhwdrg" path="res://components/avoid_component.tscn" id="6_daxj6"]
 [ext_resource type="PackedScene" uid="uid://b0ktboaygj8y7" path="res://components/health_component.tscn" id="7_3hhno"]
 [ext_resource type="PackedScene" uid="uid://ce1ib0g4ddcny" path="res://components/trail_component.tscn" id="8_4w7k5"]
 [ext_resource type="PackedScene" uid="uid://cxf5q23h0gu8d" path="res://enemy/state_machine.tscn" id="9_q34op"]
-[ext_resource type="PackedScene" uid="uid://dc6x7fqwuvnsi" path="res://enemy/enemy_patrol.tscn" id="10_pdrvg"]
-[ext_resource type="PackedScene" uid="uid://bc4k5xp8hcjch" path="res://enemy/enemy_wander.tscn" id="11_81jp7"]
-[ext_resource type="PackedScene" uid="uid://bh07wt5aincbm" path="res://enemy/enemy_attack.tscn" id="12_k11lw"]
+[ext_resource type="PackedScene" uid="uid://cx0q6bp48f0y1" path="res://enemy/enemy_nav_patrol.tscn" id="12_hw2js"]
+[ext_resource type="PackedScene" uid="uid://bljclu8e21ho7" path="res://enemy/enemy_nav_wander.tscn" id="13_spaq4"]
+[ext_resource type="PackedScene" uid="uid://dh6ih7hnxno1f" path="res://enemy/enemy_nav_attack.tscn" id="14_dmyu7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0uuo1"]
 radius = 30.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dmyu7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_daxj6"]
 resource_local_to_scene = true
 shader = ExtResource("5_spaq4")
 shader_parameter/active = true
@@ -107,7 +106,7 @@ texture = ExtResource("1_3a1fs")
 shape = SubResource("CircleShape2D_0uuo1")
 
 [node name="MissileLaunchComponent" parent="." unique_id=688722551 instance=ExtResource("2_gk373")]
-material = SubResource("ShaderMaterial_dmyu7")
+material = SubResource("ShaderMaterial_daxj6")
 cool_down = 2.0
 missile_scene = ExtResource("3_hw2js")
 
@@ -124,31 +123,39 @@ collision_mask = 32
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectComponent" unique_id=1417818784]
 shape = SubResource("CircleShape2D_3v7dl")
 
-[node name="AvoidComponent" parent="." unique_id=1655326643 instance=ExtResource("6_daxj6")]
-
 [node name="HealthComponent" parent="." unique_id=1640159736 instance=ExtResource("7_3hhno")]
 
 [node name="TrailComponent" parent="." unique_id=648980880 instance=ExtResource("8_4w7k5")]
 
 [node name="StateMachine" parent="." unique_id=2094848143 node_paths=PackedStringArray("initial_state") instance=ExtResource("9_q34op")]
-initial_state = NodePath("EnemyPatrol")
+initial_state = NodePath("EnemyNavPatrol")
 
-[node name="EnemyPatrol" parent="StateMachine" unique_id=388779528 node_paths=PackedStringArray("enemy", "detect_component") instance=ExtResource("10_pdrvg")]
+[node name="EnemyNavPatrol" parent="StateMachine" unique_id=56314726 node_paths=PackedStringArray("enemy", "nav_agent", "search_component") instance=ExtResource("12_hw2js")]
 enemy = NodePath("../..")
-detect_component = NodePath("../../DetectComponent")
-
-[node name="EnemyWander" parent="StateMachine" unique_id=1764500108 node_paths=PackedStringArray("enemy", "search_component") instance=ExtResource("11_81jp7")]
-enemy = NodePath("../..")
+nav_agent = NodePath("../../NavigationAgent2D")
 search_component = NodePath("../../DetectComponent")
 
-[node name="EnemyAttack" parent="StateMachine" unique_id=56227992 node_paths=PackedStringArray("enemy", "detect_component", "weapon_component") instance=ExtResource("12_k11lw")]
+[node name="EnemyNavWander" parent="StateMachine" unique_id=1000953119 node_paths=PackedStringArray("enemy", "search_component", "nav_agent") instance=ExtResource("13_spaq4")]
 enemy = NodePath("../..")
-detect_component = NodePath("../../DetectComponent")
+search_component = NodePath("../../DetectComponent")
+nav_agent = NodePath("../../NavigationAgent2D")
+
+[node name="EnemyNavAttack" parent="StateMachine" unique_id=1758397723 node_paths=PackedStringArray("enemy", "search_component", "weapon_component", "nav_agent") instance=ExtResource("14_dmyu7")]
+enemy = NodePath("../..")
+search_component = NodePath("../../DetectComponent")
 weapon_component = NodePath("../../MissileLaunchComponent")
+nav_agent = NodePath("../../NavigationAgent2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1183810511]
 libraries/ = SubResource("AnimationLibrary_gk373")
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1280916461]
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 40.0
+debug_enabled = true
+
 [connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]
 [connection signal="get_damage" from="HurtBoxComponent" to="HealthComponent" method="get_damage"]
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

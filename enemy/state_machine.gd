@@ -16,6 +16,11 @@ func _ready() -> void:
 		initial_state.enter()
 		current_state = initial_state
 
+	# waiting navigationserver ready
+	set_physics_process(false)
+	await get_tree().create_timer(0.1).timeout
+	set_physics_process(true)
+
 
 func _physics_process(delta: float) -> void:
 	if current_state:
