@@ -17,6 +17,9 @@ func _ready() -> void:
 	set_cur_pos()
 
 
+#region 公用接口
+
+
 func set_cur_pos():
 	cur_pos = global_position
 
@@ -43,6 +46,9 @@ func stop():
 		nav_agent.velocity = Vector2.ZERO
 	else:
 		velocity = Vector2.ZERO
+
+
+#endregion
 
 
 func update_direction(target_pos: Vector2):
