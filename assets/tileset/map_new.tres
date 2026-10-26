@@ -12,12 +12,6 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -15.805267, -21.450005, -32, 19.192116, -32, 32, -15.240795, 32, 19.756584, 17.498688, 32, -22.014477, 32, -32, 19.192108)])
 agent_radius = 0.0
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_kfjqs"]
-vertices = PackedVector2Array(32, -19.195313, 32, 22.578125, 22.015625, 32, -24.273438, 32, -32, 21.453125, -32, -19.757813, -23.140625, -32, 23.140625, -32)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-32, -19.756588, -23.143429, -32, 23.143433, -32, 32, -19.192112, 32, 22.578957, 22.01448, 32, -24.272373, 32, -32, 21.450005)])
-agent_radius = 0.0
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_x5gj5"]
 vertices = PackedVector2Array(32, -15.2421875, 32, 19.757813, 17.5, 32, -22.015625, 32, -32, 19.195313, -32, -15.8046875, -21.453125, -32, 19.195313, -32)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5, 6, 7)])
@@ -145,7 +139,6 @@ texture_region_size = Vector2i(64, 64)
 8:0/0 = 0
 9:0/0 = 0
 0:1/0 = 0
-0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_kfjqs")
 1:1/0 = 0
 1:1/0/terrain_set = 0
 1:1/0/terrains_peering_bit/right_side = 0
