@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var points: Node2D
 @export var speed: float = 100
+@export var map_pcg: Node2D  # 程序化内容生成地图
+
 @onready var weapon_component: Node2D = $WeaponComponent
 @onready var detect_component: Node2D = $SearchComponent
 @onready var hurt_box_component: Area2D = $HurtBoxComponent

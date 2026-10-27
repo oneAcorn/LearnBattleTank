@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 @export var max_speed: float = 300
+@export var points: Node2D
+
 @onready var engine_sound: AudioStreamPlayer = $EngineSound
 @onready var weapon_component: Node2D = $WeaponComponent
 @onready var health_component: Node = $HealthComponent
@@ -23,6 +25,11 @@ func _ready() -> void:
 	GameManager.player_win.connect(_on_player_win)
 	material.set_shader_parameter("active", false)
 	weapon_component.material.set_shader_parameter("active", false)
+	set_pos()
+
+
+func set_pos():
+	global_position = points.get_node("PlayerStart").global_position
 
 
 func _process(delta: float) -> void:

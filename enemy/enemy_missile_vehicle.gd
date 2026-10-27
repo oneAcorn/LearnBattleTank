@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 @export var points: Node2D
-
 @export var speed: float = 100
+@export var map_pcg: Node2D
+
 @onready var weapon_component: Node2D = $MissileLaunchComponent
 @onready var detect_component: Area2D = $DetectComponent
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

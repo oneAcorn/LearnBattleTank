@@ -2,25 +2,35 @@ extends Node
 
 signal wave_died
 
+@export var map_pcg: Node2D
 @export var enemy_tank_scene: Array[PackedScene] = []
-var died_tank: int
-var died_enemy: int
-var total_enemy_size: int
-
-@export var path_holder: Node2D
+@export var enemy_tower_scene: PackedScene
 @export var wave_number: int = 3  # 敌方攻击波次数量
 @export var enemy_in_wave: int = 8  # 每个波次的坦克数量
 @export var enemy_spawn_time: int = 2  # 敌人出生时间间隔
 @export var enemies_holder: Node2D  # 敌人节点容器
-@onready var paths: Array
+@export var enemy_tower_number: int = 5
+
+var died_tank: int
+var died_enemy: int
+var total_enemy_size: int
+var tower_points: Array
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	tower_points = map_pcg.get_tower_points(enemy_tower_number)
 	GameManager.entity_died.connect(on_entity_died)
+	spawn_tower()
 	check_enemy_size()
-	paths = path_holder.get_children()
 	spawn_waves()
+
+
+func spawn_tower():
+	for point in tower_points:
+		var enemy_tower = enemy_tower_scene.instantiate()
+		enemies_holder.add_child(enemy_tower)
+		enemy_tower.global_position = point
 
 
 func on_entity_died(_pos: Vector2, groups: Array):
@@ -43,14 +53,13 @@ func spawn_wave():
 
 func spawn_enemy():
 	var enemy_tank = enemy_tank_scene.pick_random().instantiate()
-	var path = paths.pick_random()
 	enemy_tank.speed = randi_range(100, 150)
 	if enemy_tank is CharacterBody2D:
-		enemy_tank.points = path
+		#enemy_tank.points = path
+		#enemy_tank.global_position = path.to_global(path.curve.get_point_position(0))
+		enemy_tank.map_pcg = map_pcg
+		enemy_tank.global_position = map_pcg.enemy_start_pos
 		enemies_holder.add_child(enemy_tank)
-		enemy_tank.global_position = path.to_global(path.curve.get_point_position(0))
-	else:
-		path.add_child(enemy_tank)
 
 
 func check_wave_end(groups):

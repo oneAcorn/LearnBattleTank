@@ -19,7 +19,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r5k2"]
 size = Vector2(39, 40)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbyuh"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fsot"]
 resource_local_to_scene = true
 shader = ExtResource("5_3l5o0")
 shader_parameter/active = false
@@ -124,7 +124,7 @@ rotation = 1.5707964
 texture = ExtResource("7_3l5o0")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("4_8fsot")]
-material = SubResource("ShaderMaterial_tbyuh")
+material = SubResource("ShaderMaterial_8fsot")
 cool_down = 0.8
 bullet_scene = ExtResource("6_i8ww4")
 

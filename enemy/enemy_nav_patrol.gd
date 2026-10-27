@@ -27,6 +27,11 @@ func physics_update(_delta: float):
 
 
 func get_patrol_point():
+	# 如果有程序化生成地图则直接使用地图生成的巡逻点
+	if "map_pcg" in enemy and is_instance_valid(enemy.map_pcg) and enemy.map_pcg.has_method("get_patrol_points"):
+		patrol_points = enemy.map_pcg.get_patrol_points()
+		return
+
 	var points = enemy.points
 	if points is Path2D:
 		for p in points.curve.get_baked_points():
