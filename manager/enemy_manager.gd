@@ -5,8 +5,6 @@ signal wave_died
 @export var map_pcg: Node2D
 @export var enemy_tank_scene: Array[PackedScene] = []
 @export var enemy_tower_scene: PackedScene
-@export var wave_number: int = 3  # 敌方攻击波次数量
-@export var enemy_in_wave: int = 8  # 每个波次的坦克数量
 @export var enemy_spawn_time: int = 2  # 敌人出生时间间隔
 @export var enemies_holder: Node2D  # 敌人节点容器
 @export var enemy_tower_number: int = 5
@@ -16,14 +14,30 @@ var died_enemy: int
 var total_enemy_size: int
 var tower_points: Array
 
+var wave_number: int = GameManager.current_level + 1  # 敌方攻击波次数量
+var enemy_in_wave: int = GameManager.current_level + 3  # 每个波次的坦克数量
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	tower_points = map_pcg.get_tower_points(enemy_tower_number)
 	GameManager.entity_died.connect(on_entity_died)
+	GameManager.level_start.connect(on_level_start)
 	spawn_tower()
 	check_enemy_size()
+
+
+func on_level_start():
+	wave_number = GameManager.current_level + 1
+	enemy_in_wave = GameManager.current_level + 3
 	spawn_waves()
+
+
+func get_enemy_data():
+	var data: Dictionary
+	data["wave"] = wave_number
+	data["enemy"] = total_enemy_size
+	return data
 
 
 func spawn_tower():

@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dji8thqg63ary"]
+
+[ext_resource type="Texture2D" uid="uid://c0a88pbs2o1ct" path="res://assets/UI/tank_menu.png" id="1_0h2wq"]
+[ext_resource type="Script" uid="uid://bwj7pix11xaiv" path="res://UI/menu.gd" id="1_qmqfe"]
+[ext_resource type="FontFile" uid="uid://byqe3samxmp2t" path="res://assets/font/Rockboxcond12.ttf" id="2_4hkxj"]
+[ext_resource type="StyleBox" uid="uid://688tfm2rx2ar" path="res://assets/UI/panel.tres" id="3_qmqfe"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e05sn"]
+font = ExtResource("2_4hkxj")
+font_size = 100
+font_color = Color(0.80102336, 0.15471074, 0.22755003, 1)
+outline_size = 5
+outline_color = Color(0.7011048, 0.5847814, 0, 1)
+
+[node name="Menu" type="Control" unique_id=253761161]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qmqfe")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1052651992]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0h2wq")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect" unique_id=1988114264]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -500.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer" unique_id=1940431361]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=951756609]
+layout_mode = 2
+text = "Battle Tanks"
+label_settings = SubResource("LabelSettings_e05sn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=606437916]
+layout_mode = 2
+
+[node name="StartPanel" type="PanelContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=1405795005]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("3_qmqfe")
+
+[node name="StartBtn" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/StartPanel" unique_id=1063647339]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.9481544, 0.2628837, 0.33882168, 1)
+theme_override_fonts/font = ExtResource("2_4hkxj")
+theme_override_font_sizes/font_size = 30
+text = "Start Game"
+
+[node name="QuitPanel" type="PanelContainer" parent="TextureRect/MarginContainer/VBoxContainer" unique_id=1409284300]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("3_qmqfe")
+
+[node name="QuitBtn" type="Button" parent="TextureRect/MarginContainer/VBoxContainer/QuitPanel" unique_id=1224943478]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(0.9490196, 0.2627451, 0.3372549, 1)
+theme_override_fonts/font = ExtResource("2_4hkxj")
+theme_override_font_sizes/font_size = 30
+text = "Quit Game"
+
+[connection signal="mouse_entered" from="TextureRect/MarginContainer/VBoxContainer/StartPanel/StartBtn" to="." method="_on_mouse_enter"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/StartPanel/StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="mouse_entered" from="TextureRect/MarginContainer/VBoxContainer/QuitPanel/QuitBtn" to="." method="_on_mouse_enter"]
+[connection signal="pressed" from="TextureRect/MarginContainer/VBoxContainer/QuitPanel/QuitBtn" to="." method="_on_quit_btn_pressed"]

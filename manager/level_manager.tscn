@@ -1,0 +1,172 @@
+[gd_scene format=3 uid="uid://befpao0n75x63"]
+
+[ext_resource type="Script" uid="uid://bnycaqtsjt3go" path="res://manager/level_manager.gd" id="1_406ql"]
+[ext_resource type="StyleBox" uid="uid://688tfm2rx2ar" path="res://assets/UI/panel.tres" id="1_qg0xh"]
+[ext_resource type="FontFile" uid="uid://byqe3samxmp2t" path="res://assets/font/Rockboxcond12.ttf" id="2_ou5xw"]
+[ext_resource type="LabelSettings" uid="uid://c2oda3malkabe" path="res://assets/UI/font35.tres" id="4_1xv6y"]
+
+[sub_resource type="Animation" id="Animation_rsfm5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContinueLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_406ql"]
+resource_name = "show"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ContinueLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1xv6y"]
+_data = {
+&"RESET": SubResource("Animation_rsfm5"),
+&"show": SubResource("Animation_406ql")
+}
+
+[node name="LevelManager" type="Node" unique_id=919361609]
+process_mode = 3
+script = ExtResource("1_406ql")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2086211539]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=799980052]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContinuePanel" type="PanelContainer" parent="CanvasLayer/Control" unique_id=1373740329]
+custom_minimum_size = Vector2(600, 170)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -170.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("1_qg0xh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/ContinuePanel" unique_id=1069120339]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ContinueLabel" type="RichTextLabel" parent="CanvasLayer/Control/ContinuePanel/VBoxContainer" unique_id=18036984]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_outline_size = 6
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/normal_font = ExtResource("2_ou5xw")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "dsafsadf"
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="ContinueBtn" type="Button" parent="CanvasLayer/Control/ContinuePanel/VBoxContainer" unique_id=193705595]
+visible = false
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Continue"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control/ContinuePanel/VBoxContainer" unique_id=865573050]
+libraries/ = SubResource("AnimationLibrary_1xv6y")
+
+[node name="WinPanel" type="PanelContainer" parent="CanvasLayer/Control" unique_id=370994088]
+visible = false
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -75.0
+offset_right = 200.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_qg0xh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/WinPanel" unique_id=522754914]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/WinPanel/VBoxContainer" unique_id=1897980146]
+layout_mode = 2
+size_flags_vertical = 3
+text = "You Win !"
+label_settings = ExtResource("4_1xv6y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextLevelBtn" type="Button" parent="CanvasLayer/Control/WinPanel/VBoxContainer" unique_id=609971814]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Next Level"
+
+[node name="LossPanel" type="PanelContainer" parent="CanvasLayer/Control" unique_id=994472005]
+visible = false
+custom_minimum_size = Vector2(400, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -75.0
+offset_right = 200.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_qg0xh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/LossPanel" unique_id=376987717]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/LossPanel/VBoxContainer" unique_id=1395598590]
+layout_mode = 2
+size_flags_vertical = 3
+text = "You Loss"
+label_settings = ExtResource("4_1xv6y")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackBtn" type="Button" parent="CanvasLayer/Control/LossPanel/VBoxContainer" unique_id=89071937]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Back Menu"
+
+[node name="Timer" type="Timer" parent="." unique_id=423386278]
+
+[connection signal="pressed" from="CanvasLayer/Control/ContinuePanel/VBoxContainer/ContinueBtn" to="." method="_on_continue_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/WinPanel/VBoxContainer/NextLevelBtn" to="." method="_on_next_level_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/LossPanel/VBoxContainer/BackBtn" to="." method="_on_back_btn_pressed"]

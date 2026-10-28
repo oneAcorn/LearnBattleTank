@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="LearnBattleTank"
-run/main_scene="uid://by7bt5vm8acvv"
+run/main_scene="uid://dji8thqg63ary"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameManager="*uid://bkiiq5eloi2x8"
+SoundManager="*uid://j4ivg6u6uggp"
 
 [display]
 
