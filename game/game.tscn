@@ -12,8 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://bgemqgwdw0b3k" path="res://enemy/enemy_tank_state_pattern.tscn" id="7_vsp63"]
 [ext_resource type="PackedScene" uid="uid://d7b4krc5fbo" path="res://map/map_pcg.tscn" id="8_3vho3"]
 [ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="9_3vho3"]
+[ext_resource type="PackedScene" uid="uid://befpao0n75x63" path="res://manager/level_manager.tscn" id="10_b686c"]
+[ext_resource type="Script" uid="uid://cwm4855n7gs5m" path="res://game/canvas_modulate.gd" id="13_vsp63"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qf6n1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b686c"]
 resource_local_to_scene = true
 shader = ExtResource("9_3vho3")
 shader_parameter/active = false
@@ -39,12 +41,22 @@ position = Vector2(392, 135)
 [node name="BottomRight" type="Marker2D" parent="Points" unique_id=940405234]
 position = Vector2(2319, 1237)
 
+[node name="Map" parent="." unique_id=478418841 node_paths=PackedStringArray("points") instance=ExtResource("8_3vho3")]
+points = NodePath("../Points")
+
 [node name="VFXManager" parent="." unique_id=612723603 instance=ExtResource("5_dakft")]
 exp_anim_scene = ExtResource("6_u5opy")
 exp_particle_scene = ExtResource("3_j8tme")
 
-[node name="Map" parent="." unique_id=478418841 node_paths=PackedStringArray("points") instance=ExtResource("8_3vho3")]
+[node name="UI" type="CanvasLayer" parent="." unique_id=2084516245]
+
+[node name="HUD" parent="UI" unique_id=1056202728 instance=ExtResource("3_4fuuu")]
+
+[node name="Player" parent="." unique_id=283867489 node_paths=PackedStringArray("points", "map_pcg") instance=ExtResource("2_4fuuu")]
+material = SubResource("ShaderMaterial_b686c")
+position = Vector2(1052, 354)
 points = NodePath("../Points")
+map_pcg = NodePath("../Map")
 
 [node name="EnemyManager" parent="." unique_id=341414422 node_paths=PackedStringArray("map_pcg", "enemies_holder") instance=ExtResource("3_y36n6")]
 map_pcg = NodePath("../Map")
@@ -54,19 +66,16 @@ enemies_holder = NodePath("../Enemies")
 
 [node name="PickupManager" parent="." unique_id=1160319411 instance=ExtResource("4_l8g03")]
 
-[node name="Player" parent="." unique_id=283867489 node_paths=PackedStringArray("points") instance=ExtResource("2_4fuuu")]
-material = SubResource("ShaderMaterial_qf6n1")
-position = Vector2(1052, 354)
-points = NodePath("../Points")
-
-[node name="UI" type="CanvasLayer" parent="." unique_id=2084516245]
-
-[node name="HUD" parent="UI" unique_id=1056202728 instance=ExtResource("3_4fuuu")]
+[node name="LevelManager" parent="." unique_id=919361609 node_paths=PackedStringArray("enemy_manager", "map_pcg") instance=ExtResource("10_b686c")]
+enemy_manager = NodePath("../EnemyManager")
+map_pcg = NodePath("../Map")
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1959983416]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=498139481]
 color = Color(0.31380698, 0.3463737, 0.7292751, 1)
+script = ExtResource("13_vsp63")
+map_colors = Array[Color]([Color(0.4, 0.5882353, 0.7294118, 1), Color(0.8901961, 0.8901961, 0.54509807, 1), Color(0.9098039, 0.6431373, 0.3254902, 1), Color(0.49411765, 0.29803923, 0.4117647, 1), Color(0.16470589, 0.16078432, 0.39607844, 1)])
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1601885561]
 environment = SubResource("Environment_vsp63")

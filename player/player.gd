@@ -3,6 +3,7 @@ class_name Player
 
 @export var max_speed: float = 300
 @export var points: Node2D
+@export var map_pcg: Node2D
 
 @onready var engine_sound: AudioStreamPlayer = $EngineSound
 @onready var weapon_component: Node2D = $WeaponComponent
@@ -41,6 +42,10 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if map_pcg.is_on_road(global_position):
+		max_speed = 250
+	else:
+		max_speed = 150
 	move(delta)
 
 

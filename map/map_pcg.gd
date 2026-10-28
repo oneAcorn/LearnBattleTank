@@ -52,6 +52,14 @@ func _ready() -> void:
 	setup_deco_trees()
 
 
+func is_on_road(pos: Vector2):
+	var cell = road.local_to_map(pos)
+	var road_cells = road.get_used_cells()
+	if cell in road_cells:
+		return true
+	return false
+
+
 func setup_grass():
 	grass.clear()
 	for cell_x in range(map_size.x):

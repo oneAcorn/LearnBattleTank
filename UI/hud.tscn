@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://m76f1vbepq3o" path="res://UI/hud.gd" id="1_ne75i"]
 [ext_resource type="StyleBox" uid="uid://688tfm2rx2ar" path="res://assets/UI/panel.tres" id="2_2o5uh"]
 [ext_resource type="LabelSettings" uid="uid://c2oda3malkabe" path="res://assets/UI/font35.tres" id="3_b1lf8"]
-[ext_resource type="FontFile" uid="uid://byqe3samxmp2t" path="res://assets/font/Rockboxcond12.ttf" id="4_b1lf8"]
 
 [sub_resource type="Theme" id="Theme_2o5uh"]
 PanelContainer/styles/panel = ExtResource("2_2o5uh")
@@ -96,31 +95,3 @@ theme_override_styles/background = SubResource("StyleBoxFlat_rnl6m")
 theme_override_styles/fill = SubResource("StyleBoxFlat_1ui3w")
 step = 1.0
 value = 33.0
-
-[node name="NotifyPanel" type="PanelContainer" parent="MarginContainer" unique_id=1654361780]
-visible = false
-custom_minimum_size = Vector2(400, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NotifyPanel" unique_id=1234690766]
-layout_mode = 2
-
-[node name="NotifyLabel" type="Label" parent="MarginContainer/NotifyPanel/VBoxContainer" unique_id=33183738]
-layout_mode = 2
-text = "You Win"
-label_settings = ExtResource("3_b1lf8")
-horizontal_alignment = 1
-
-[node name="ContinueButton" type="Button" parent="MarginContainer/NotifyPanel/VBoxContainer" unique_id=1052870396]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_fonts/font = ExtResource("4_b1lf8")
-theme_override_font_sizes/font_size = 30
-text = "Continue"
-
-[node name="Timer" type="Timer" parent="." unique_id=181769170]
-one_shot = true
-
-[connection signal="pressed" from="MarginContainer/NotifyPanel/VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

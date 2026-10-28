@@ -19,6 +19,8 @@ extends Node
 func _ready() -> void:
 	GameManager.player_killed.connect(_on_player_killed)
 	GameManager.player_win.connect(_on_player_win)
+	pause_level()
+	intro_anim()
 
 
 func start_level():
@@ -63,6 +65,7 @@ func _on_player_win():
 
 
 func _on_continue_btn_pressed() -> void:
+	print("continue btn pressed")
 	GameManager.level_start.emit()
 	continue_panel.hide()
 	control.hide()

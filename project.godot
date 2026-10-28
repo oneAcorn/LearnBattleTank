@@ -25,6 +25,8 @@ SoundManager="*uid://j4ivg6u6uggp"
 window/size/viewport_width=1280
 window/size/viewport_height=720
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://bwh1cg14p0mmu"
+mouse_cursor/custom_image_hotspot=Vector2(32, 32)
 
 [editor]
 
