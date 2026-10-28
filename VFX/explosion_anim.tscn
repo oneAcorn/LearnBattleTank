@@ -113,6 +113,7 @@ animations = [{
 }]
 
 [node name="ExplosionAnim" type="AnimatedSprite2D" unique_id=731744053]
+modulate = Color(1.1952729, 1.1952729, 1.1952729, 1)
 material = ExtResource("1_3qmiw")
 sprite_frames = SubResource("SpriteFrames_08ncu")
 animation = &"sonic_explosion"

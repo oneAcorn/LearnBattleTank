@@ -89,6 +89,9 @@ _data = {
 &"flash": SubResource("Animation_s6oj5")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_3l5o0"]
+polygon = PackedVector2Array(-16, -19, 15, -19, 16, -13, 20, -5, 20, 6, 16, 13, 13, 19, -15, 19, -18, 10, -18, -10)
+
 [node name="EnemyTank" type="CharacterBody2D" unique_id=747929265 groups=["Enemy", "EnemyTank"]]
 material = ExtResource("1_kn2v8")
 collision_layer = 64
@@ -160,6 +163,9 @@ libraries/ = SubResource("AnimationLibrary_biyh7")
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 35.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=1310954424]
+occluder = SubResource("OccluderPolygon2D_3l5o0")
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]

@@ -19,6 +19,10 @@ shader = ExtResource("9_3vho3")
 shader_parameter/active = false
 shader_parameter/flash_color = Color(1, 1, 1, 1)
 
+[sub_resource type="Environment" id="Environment_vsp63"]
+background_mode = 3
+glow_enabled = true
+
 [node name="Game" type="Node2D" unique_id=1967543132]
 
 [node name="Points" type="Node2D" parent="." unique_id=1733107336]
@@ -63,3 +67,6 @@ points = NodePath("../Points")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=498139481]
 color = Color(0.31380698, 0.3463737, 0.7292751, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1601885561]
+environment = SubResource("Environment_vsp63")
