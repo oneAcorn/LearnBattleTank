@@ -60,3 +60,6 @@ points = NodePath("../Points")
 [node name="HUD" parent="UI" unique_id=1056202728 instance=ExtResource("3_4fuuu")]
 
 [node name="Enemies" type="Node2D" parent="." unique_id=1959983416]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=498139481]
+color = Color(0.31380698, 0.3463737, 0.7292751, 1)

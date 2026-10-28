@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b5kfweopvbt0" path="res://object/pick_up.gd" id="1_1qth2"]
 [ext_resource type="AudioStream" uid="uid://bliytu7j1qsa8" path="res://assets/sound/pickup.wav" id="2_1qth2"]
+[ext_resource type="Material" uid="uid://hduwki5kc2ku" path="res://assets/material/unshaded_canvas_item_material.tres" id="2_jst7h"]
 [ext_resource type="Texture2D" uid="uid://b6ij70gcxeyq0" path="res://assets/VFX/white_glowing_circle.png" id="3_jst7h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hu4iq"]
@@ -225,6 +226,7 @@ collision_mask = 32
 script = ExtResource("1_1qth2")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1913143770]
+material = ExtResource("2_jst7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1730294827]
 shape = SubResource("CircleShape2D_hu4iq")
@@ -234,6 +236,7 @@ libraries/ = SubResource("AnimationLibrary_4084m")
 autoplay = &"idle"
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2112347277]
+material = ExtResource("2_jst7h")
 texture = ExtResource("3_jst7h")
 process_material = SubResource("ParticleProcessMaterial_xqudy")
 

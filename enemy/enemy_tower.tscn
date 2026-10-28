@@ -10,11 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://b0ktboaygj8y7" path="res://components/health_component.tscn" id="5_100w1"]
 [ext_resource type="PackedScene" uid="uid://cej114y0evb5u" path="res://object/enemy_bullet.tscn" id="5_sasw6"]
 [ext_resource type="Shader" uid="uid://k72sg7irgf3n" path="res://player/flash.gdshader" id="5_xjhd7"]
+[ext_resource type="Texture2D" uid="uid://b62x30owg5gss" path="res://assets/VFX/spotlight_1.png" id="11_xjhd7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sasw6"]
 radius = 28.85
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sasw6"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rdtwd"]
 resource_local_to_scene = true
 shader = ExtResource("5_xjhd7")
 shader_parameter/active = false
@@ -101,7 +102,7 @@ texture = ExtResource("1_o2pk4")
 shape = SubResource("CircleShape2D_sasw6")
 
 [node name="WeaponComponent" parent="." unique_id=620816288 instance=ExtResource("2_x20hq")]
-material = SubResource("ShaderMaterial_sasw6")
+material = SubResource("ShaderMaterial_rdtwd")
 bullet_scene = ExtResource("5_sasw6")
 
 [node name="Gun" parent="WeaponComponent" index="0" unique_id=294733802]
@@ -124,6 +125,13 @@ shape = SubResource("CircleShape2D_7awyw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=192837327]
 libraries/ = SubResource("AnimationLibrary_sasw6")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=649177923]
+color = Color(0.84477276, 0.8881665, 0.4136558, 1)
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("11_xjhd7")
+texture_scale = 5.0
 
 [connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]
 [connection signal="get_damage" from="HurtBoxComponent" to="HealthComponent" method="get_damage"]

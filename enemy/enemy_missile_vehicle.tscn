@@ -153,7 +153,6 @@ libraries/ = SubResource("AnimationLibrary_gk373")
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 40.0
-debug_enabled = true
 
 [connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]
 [connection signal="get_damage" from="HurtBoxComponent" to="HealthComponent" method="get_damage"]

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bxoddk5xsrnen"]
 
+[ext_resource type="Material" uid="uid://hduwki5kc2ku" path="res://assets/material/unshaded_canvas_item_material.tres" id="1_3qmiw"]
 [ext_resource type="Texture2D" uid="uid://dfdvbw8ofwji4" path="res://assets/VFX/explosion/explosion1.png" id="1_m56ok"]
 [ext_resource type="Texture2D" uid="uid://1bnem2anapje" path="res://assets/VFX/explosion/explosion2.png" id="2_3qmiw"]
 [ext_resource type="Texture2D" uid="uid://dount6whaqk34" path="res://assets/VFX/explosion/explosion3.png" id="3_qsi8p"]
@@ -112,6 +113,7 @@ animations = [{
 }]
 
 [node name="ExplosionAnim" type="AnimatedSprite2D" unique_id=731744053]
+material = ExtResource("1_3qmiw")
 sprite_frames = SubResource("SpriteFrames_08ncu")
 animation = &"sonic_explosion"
 frame = 8

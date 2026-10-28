@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cby0h0t866oes"]
 
+[ext_resource type="Material" uid="uid://hduwki5kc2ku" path="res://assets/material/unshaded_canvas_item_material.tres" id="1_5lygy"]
 [ext_resource type="Texture2D" uid="uid://b6ij70gcxeyq0" path="res://assets/VFX/white_glowing_circle.png" id="1_uhhfd"]
 
 [sub_resource type="Curve" id="Curve_uhhfd"]
@@ -11,6 +12,7 @@ offsets = PackedFloat32Array(0, 0.2238806, 0.42537314, 0.67164177, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.93698394, 0.8506493, 0, 1, 0.7998287, 0.7207045, 0.016999012, 1, 0.9999998, 0.19721326, 0.26309967, 1, 1, 1, 1, 0)
 
 [node name="ExpParticle" type="CPUParticles2D" unique_id=81828855]
+material = ExtResource("1_5lygy")
 emitting = false
 amount = 12
 texture = ExtResource("1_uhhfd")

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bp07hx6cxhhg"]
 
+[ext_resource type="Material" uid="uid://hduwki5kc2ku" path="res://assets/material/unshaded_canvas_item_material.tres" id="1_ak2o4"]
 [ext_resource type="Script" uid="uid://bb7j76f4yyhg2" path="res://object/bullet_trail.gd" id="1_bwegr"]
 
 [sub_resource type="Curve" id="Curve_bwegr"]
@@ -13,6 +14,7 @@ colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
 [node name="BulletTrail" type="Node2D" unique_id=1821403940]
 
 [node name="Trail" type="Line2D" parent="." unique_id=1262773644]
+material = ExtResource("1_ak2o4")
 points = PackedVector2Array(-40, 0, -11, 0, 0, 0)
 width_curve = SubResource("Curve_bwegr")
 default_color = Color(1, 1, 1, 0.8352941)

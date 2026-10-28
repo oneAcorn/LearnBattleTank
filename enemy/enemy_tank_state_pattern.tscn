@@ -160,7 +160,6 @@ libraries/ = SubResource("AnimationLibrary_biyh7")
 path_postprocessing = 1
 avoidance_enabled = true
 radius = 35.0
-debug_enabled = true
 
 [connection signal="died" from="HealthComponent" to="." method="_on_health_component_died"]
 [connection signal="get_damage" from="HurtBoxComponent" to="." method="_on_hurt_box_component_get_damage"]

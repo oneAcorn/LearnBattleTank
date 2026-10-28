@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dmsw4bdhqh2xh" path="res://assets/enemy/bulletSand2.png" id="1_djw8o"]
 [ext_resource type="Script" uid="uid://bh0p3cdpsqb01" path="res://object/bullet_base.gd" id="1_lbnj8"]
 [ext_resource type="PackedScene" uid="uid://5ap5bchyvxxn" path="res://components/hit_box_component.tscn" id="2_auy1d"]
+[ext_resource type="Material" uid="uid://hduwki5kc2ku" path="res://assets/material/unshaded_canvas_item_material.tres" id="2_n24hg"]
 [ext_resource type="PackedScene" uid="uid://bp07hx6cxhhg" path="res://object/bullet_trail.tscn" id="3_auy1d"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vau08"]
@@ -13,6 +14,7 @@ height = 12.0
 script = ExtResource("1_lbnj8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1747777735]
+material = ExtResource("2_n24hg")
 rotation = 1.5707964
 texture = ExtResource("1_djw8o")
 
